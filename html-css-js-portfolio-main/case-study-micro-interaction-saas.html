@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
+    <title>Micro-interaction SaaS application | Case Study | Aditya Mote</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+</head>
+
+<body class="case-study-body">
+    <nav id="desktop-nav" class="case-nav-bar">
+        <ul class="nav-links case-nav-links">
+            <li><a href="./Index.html">Aditya Mote</a></li>
+            <li><a href="./Index.html#profile">Portfolio</a></li>
+            <li><a href="./Index.html#projects">Case Studies</a></li>
+            <li><a href="./Index.html#about">About</a></li>
+            <li><a href="./Index.html#contact">Resume</a></li>
+        </ul>
+    </nav>
+    <nav id="hamburger-nav" class="case-nav-bar">
+        <a href="./Index.html" class="logo">Aditya Mote</a>
+        <div class="hamburger-menu">
+            <div class="hamburger-icon" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="menu-links">
+                <ul>
+                    <li><a href="./Index.html#profile" onclick="toggleMenu()">Portfolio</a></li>
+                    <li><a href="./Index.html#projects" onclick="toggleMenu()">Case Studies</a></li>
+                    <li><a href="./Index.html#about" onclick="toggleMenu()">About</a></li>
+                    <li><a href="./Index.html#contact" onclick="toggleMenu()">Resume</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="case-study-main">
+        <section class="case-block case-section">
+            <p class="section__text__p1">Case Study</p>
+            <h1 class="title">Micro-interaction SaaS application</h1>
+            <p class="case-study-tagline">Prototype-first UI exploration focused on delightful micro-interactions and responsive behavior.</p>
+            <div class="case-meta-row">
+                <span>Focus: Prototyping</span>
+                <span class="case-meta-sep" aria-hidden="true">|</span>
+                <span>Platform: Responsive Web</span>
+                <span class="case-meta-sep" aria-hidden="true">|</span>
+                <span>Tools: Figma</span>
+            </div>
+            <div class="case-hero-actions">
+                <button class="btn btn-color-2"
+                    onclick="window.open('https://www.figma.com/design/zVLEhRdL6wVXkvkiruZGGx/Interaction?node-id=60-773&amp;t=po3wUndgrTCvVfYc-0')">
+                    View Figma File
+                </button>
+                <button class="btn btn-color-2" type="button" title="Contact me to receive the case study PDF"
+                    onclick="location.href='./Index.html#contact'">
+                    Download Case Study PDF
+                </button>
+            </div>
+        </section>
+
+        <section class="case-block case-section" aria-labelledby="overview-heading">
+            <h2 id="overview-heading">Overview</h2>
+            <p>This project explores micro-interactions inside a SaaS application experience. The primary goal was to
+                prototype transitions, responsive layouts, and state feedback so the interface feels fast, clear, and
+                satisfying to use.</p>
+        </section>
+
+        <section class="case-block case-section" aria-labelledby="highlights-heading">
+            <h2 id="highlights-heading">What’s inside</h2>
+            <ul class="case-list-check">
+                <li>Responsive behavior across breakpoints</li>
+                <li>Color change on switch / theme toggle interactions</li>
+                <li>Motion + transitions to communicate state changes</li>
+                <li>Prototype-first workflow to validate interaction timing</li>
+            </ul>
+        </section>
+
+        <section class="case-block case-section" aria-labelledby="prototyping-heading">
+            <h2 id="prototyping-heading">Prototyping focus</h2>
+            <p>Prototyping is the core deliverable. Components and screens were linked with interaction rules to test
+                hover/press feedback, toggle states, motion curves, and responsive rearrangement. This reduces ambiguity
+                before development and helps stakeholders “feel” the product.</p>
+        </section>
+
+        <section class="case-block case-section" aria-labelledby="video-heading">
+            <h2 id="video-heading">Video (optional)</h2>
+            <p>You can add a demo video here. Export an MP4/GIF from Figma (or screen record), place it in
+                <code>./assets/</code>, then set the <code>src</code> below.</p>
+            <div class="case-video">
+                <video controls playsinline preload="metadata">
+                    <source src="./assets/micro-interaction-demo.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
+
+        <section class="case-block case-section" aria-labelledby="next-heading">
+            <h2 id="next-heading">Next Case Study</h2>
+            <a class="case-next-link" href="./Index.html#projects">→ Back to projects</a>
+        </section>
+    </main>
+
+    <footer class="case-study-footer">
+        <nav>
+            <div class="nav-links-container">
+                <ul class="nav-links">
+                    <li><a href="./Index.html#about">About</a></li>
+                    <li><a href="./Index.html#experience">Experience</a></li>
+                    <li><a href="./Index.html#projects">Projects</a></li>
+                    <li><a href="./Index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <p>Copyright &#169; 2026 Aditya Mote. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+
