@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
+    <title>Ekartham Academy | Case Study | Aditya Mote</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+</head>
+
+<body class="case-study-body arrow-theme">
+    <nav id="desktop-nav" class="case-nav-bar">
+        <ul class="nav-links case-nav-links">
+            <li><a href="./Index.html">Aditya Mote</a></li>
+            <li><a href="./Index.html#profile">Portfolio</a></li>
+            <li><a href="./Index.html#projects">Case Studies</a></li>
+            <li><a href="./Index.html#about">About</a></li>
+            <li><a href="./Index.html#contact">Resume</a></li>
+        </ul>
+    </nav>
+    <nav id="hamburger-nav" class="case-nav-bar">
+        <a href="./Index.html" class="logo">Aditya Mote</a>
+        <div class="hamburger-menu">
+            <div class="hamburger-icon" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="menu-links">
+                <ul>
+                    <li><a href="./Index.html#profile" onclick="toggleMenu()">Portfolio</a></li>
+                    <li><a href="./Index.html#projects" onclick="toggleMenu()">Case Studies</a></li>
+                    <li><a href="./Index.html#about" onclick="toggleMenu()">About</a></li>
+                    <li><a href="./Index.html#contact" onclick="toggleMenu()">Resume</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="case-study-main">
+        <section class="case-block case-section">
+            <p class="section__text__p1">UX/UI Case Study</p>
+            <h1 class="title">Arrow – Smart Mall Navigation App</h1>
+            <p class="case-study-tagline">An intuitive indoor navigation experience guiding shoppers through complex mall infrastructures using interactive maps and AR.</p>
+            <div class="case-meta-row">
+                <span>Platform: Mobile App</span>
+                <span class="case-meta-sep" aria-hidden="true">|</span>
+                <span>Role: UI/UX Designer</span>
+                <span class="case-meta-sep" aria-hidden="true">|</span>
+                <span>Tools: Figma, ProtoPie</span>
+            </div>
+            <div class="case-hero-actions">
+                <button class="btn btn-color-2"
+                    onclick="window.open('https://www.figma.com/')">
+                    View Figma File
+                </button>
+                <button class="btn btn-color-2" type="button" title="Contact me to receive the case study PDF"
+                    onclick="location.href='./Index.html#contact'">
+                    Download Case Study PDF
+                </button>
+            </div>
+        </section>
+
+        <!-- OVERVIEW -->
+        <section class="case-block case-section" aria-labelledby="overview-heading">
+            <h2 id="overview-heading">Overview</h2>
+            <p>Arrow is a location-aware mobile application designed to solve the chaos of indoor navigation. By leveraging Bluetooth beacons and AR technology, the app provides real-time, turn-by-turn directions within massive shopping malls, helping users locate stores, amenities, and their parked vehicles effortlessly.</p>
+        </section>
+
+        <!-- PROBLEM & SOLUTION -->
+        <section class="case-block case-section" aria-labelledby="problem-heading">
+            <h2 id="problem-heading">The Shopper's Journey</h2>
+            <div class="arrow-ps-container">
+                <div class="arrow-ps-card problem">
+                    <h3>The Problem</h3>
+                    <p>Modern malls are massive, multi-level mazes. Shoppers frequently get lost, waste precious time trying to find specific stores, and experience high frustration when trying to locate restrooms, exits, or their parked cars in sprawling parking garages.</p>
+                </div>
+                <div class="arrow-ps-card solution">
+                    <h3>The Solution</h3>
+                    <p><b>Arrow</b> acts as a personal digital guide. It offers interactive 3D floor maps, turn-by-turn AR directional arrows superimposed on the camera view, and a smart parking locator to turn mall chaos into a seamless and enjoyable shopping experience.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TIMELINE -->
+        <section class="case-block case-section" aria-labelledby="timeline-heading">
+            <div class="arrow-timeline-container">
+                <div class="hq-timeline-header">
+                    <div class="hq-timeline-title">
+                        <h4>Research</h4>
+                        <h2>Project Timeline</h2>
+                    </div>
+                    <div class="hq-timeline-desc">
+                        Designing a complex AR indoor navigation app requires a structured approach to ensure spatial accuracy and intuitive usability.
+                    </div>
+                </div>
+                
+                <div class="arrow-timeline-track">
+                    <div class="arrow-timeline-line"></div>
+                    
+                    <div class="arrow-timeline-node">
+                        <div class="node-title">Discovery</div>
+                        <div class="node-dot"></div>
+                        <div class="node-desc">Spatial Study<br><b>4 days</b></div>
+                    </div>
+                    
+                    <div class="arrow-timeline-node">
+                        <div class="node-title">Mapping</div>
+                        <div class="node-dot"></div>
+                        <div class="node-desc">Routing & Logic<br><b>5 days</b></div>
+                    </div>
+                    
+                    <div class="arrow-timeline-node">
+                        <div class="node-title">Wireframe</div>
+                        <div class="node-dot"></div>
+                        <div class="node-desc">3D AR Flow<br><b>4 days</b></div>
+                    </div>
+                    
+                    <div class="arrow-timeline-node">
+                        <div class="node-title">Design</div>
+                        <div class="node-dot" style="background: #3b82f6;"></div>
+                        <div class="node-desc">Visual System<br><b>7 days</b></div>
+                    </div>
+                    
+                    <div class="arrow-timeline-node">
+                        <div class="node-title">Testing</div>
+                        <div class="node-dot"></div>
+                        <div class="node-desc">User Testing<br><b>5 days</b></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCESS -->
+        <section class="case-block case-section" aria-labelledby="approach-heading">
+            <h2 id="approach-heading">UI/UX Design Process</h2>
+            <p>The design process for Arrow was divided into three core stages focused on spatial understanding and clear visual feedback:</p>
+            
+            <div class="arrow-elevator-container">
+                <div class="arrow-elevator-track"></div>
+                
+                <!-- Stage 1 -->
+                <div class="arrow-elevator-stage">
+                    <div class="elevator-number">1</div>
+                    <div class="elevator-content">
+                        <h3>Empathize & Spatial Mapping</h3>
+                        <p>The goal of this phase was to understand how people navigate physical spaces and lose their orientation. I mapped the common pain points, such as confusing mall directories and indistinguishable hallways.</p>
+                        
+                        <div class="personas-container" style="margin-top: 1.5rem; background: transparent; box-shadow: none; padding: 0;">
+                            <h4 style="margin: 1.5rem 0 2rem; color: #111827;">User Personas</h4>
+                            
+                            <!-- Persona 1 -->
+                            <div class="arrow-new-persona reverse">
+                                <div class="arrow-persona-image-wrapper">
+                                    <img src="./assets/persona_mother.png" alt="Young Mother Persona" />
+                                </div>
+                                <div class="arrow-persona-content">
+                                    <span class="arrow-persona-badge">Primary User</span>
+                                    <h5 class="arrow-persona-name">Neha <span>Sharma</span></h5>
+                                    <p class="arrow-persona-quote">
+                                        I want to shop without the hassle, but navigating with a stroller is a nightmare. <strong>I'm always wondering where the nearest elevator or restroom is</strong>. It's exhausting to rely on confusing directory boards.
+                                    </p>
+                                    <div class="arrow-persona-tags">
+                                        <span class="arrow-persona-tag">⏱️ Time-poor</span>
+                                        <span class="arrow-persona-tag">🧭 Confused</span>
+                                        <span class="arrow-persona-tag">👶 Needs Accessibility</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Persona 2 -->
+                            <div class="arrow-new-persona">
+                                <div class="arrow-persona-image-wrapper">
+                                    <img src="./assets/persona_student.png" alt="Student Persona" />
+                                </div>
+                                <div class="arrow-persona-content">
+                                    <span class="arrow-persona-badge">Secondary User</span>
+                                    <h5 class="arrow-persona-name">Rahul <span>Verma</span></h5>
+                                    <p class="arrow-persona-quote">
+                                        Malls are huge and I'm usually just trying to meet friends at a specific cafe. <strong>It's not just the size of the place</strong>, it's the <strong>stress of arriving late</strong> because I can't find the right floor or store quickly.
+                                    </p>
+                                    <div class="arrow-persona-tags">
+                                        <span class="arrow-persona-tag">📱 Tech-savvy</span>
+                                        <span class="arrow-persona-tag">😫 Overwhelmed</span>
+                                        <span class="arrow-persona-tag">🏃 In a rush</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 2 -->
+                <div class="arrow-elevator-stage">
+                    <div class="elevator-number">2</div>
+                    <div class="elevator-content">
+                        <h3>Spatial Architecture & User Flow</h3>
+                        <p>The app is structured around immediate orientation and destination mapping:</p>
+                        <ul class="case-list-check" style="margin-top: 1rem;">
+                            <li><b>Search Mechanics:</b> Global search for stores, categories, and amenities with voice support.</li>
+                            <li><b>Floor-Switching Logic:</b> Seamless transition between floors using escalators or elevators.</li>
+                            <li><b>AR Routing:</b> Superimposing a bright, animated arrow on the camera feed to guide the user.</li>
+                            <li><b>"Find My Car":</b> One-tap location saving when parking, with direct routing back.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Stage 3 -->
+                <div class="arrow-elevator-stage">
+                    <div class="elevator-number">3</div>
+                    <div class="elevator-content">
+                        <h3>Visual Identity & AR UI</h3>
+                        <p>To ensure high visibility in bright mall environments, the design utilizes high-contrast colors:</p>
+                        <ul class="case-list-check" style="margin-top: 1rem;">
+                            <li><b>Font:</b> Inter (Clean, highly legible for quick glances)</li>
+                        </ul>
+                        <p style="margin-top: 1rem;"><b>Color Palette:</b></p>
+                        <div class="color-palette-display" style="background: transparent; padding: 0; box-shadow: none;">
+                            <div class="color-swatch-item">
+                                <div class="color-circle-shape" style="background: #2563eb;"></div>
+                                <span style="color: #4b5563;">Electric Blue</span>
+                            </div>
+                            <div class="color-swatch-item">
+                                <div class="color-circle-shape" style="background: #10b981;"></div>
+                                <span style="color: #4b5563;">Neon Green</span>
+                            </div>
+                            <div class="color-swatch-item">
+                                <div class="color-circle-shape" style="background: #1e293b; border: 1px solid #e5e7eb;"></div>
+                                <span style="color: #4b5563;">Dark Slate</span>
+                            </div>
+                            <div class="color-swatch-item">
+                                <div class="color-circle-shape" style="background: #ffffff; border: 1px solid #e5e7eb;"></div>
+                                <span style="color: #4b5563;">White</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEXT -->
+        <section class="case-block case-section" aria-labelledby="next-heading">
+            <h2 id="next-heading">Next Case Study</h2>
+            <a class="case-next-link" href="./Index.html#projects">→ Back to projects</a>
+        </section>
+    </main>
+
+    <footer class="case-study-footer">
+        <nav>
+            <div class="nav-links-container">
+                <ul class="nav-links">
+                    <li><a href="./Index.html#about">About</a></li>
+                    <li><a href="./Index.html#experience">Experience</a></li>
+                    <li><a href="./Index.html#projects">Projects</a></li>
+                    <li><a href="./Index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <p>Copyright &#169; 2026 Aditya Mote. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
