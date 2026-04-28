@@ -1443,6 +1443,13 @@ body.arrow-theme .case-next-link:hover {
   transform: scale(1);
 }
 
+/* Keep Arrow case-study content crisp throughout long sections */
+body.arrow-theme .scroll-animate {
+  opacity: 1;
+  filter: none;
+  transform: none;
+}
+
 /* SaaS case study visual polish */
 body.saas-theme {
   background:
