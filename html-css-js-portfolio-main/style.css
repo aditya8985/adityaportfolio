@@ -1442,3 +1442,90 @@ body.arrow-theme .case-next-link:hover {
   filter: blur(0);
   transform: scale(1);
 }
+
+/* SaaS case study visual polish */
+body.saas-theme {
+  background:
+    radial-gradient(circle at 10% -5%, rgba(99, 102, 241, 0.1), transparent 28%),
+    radial-gradient(circle at 95% 8%, rgba(56, 189, 248, 0.14), transparent 26%),
+    #ffffff;
+}
+
+body.saas-theme .case-block.case-section {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(250, 252, 255, 0.9));
+  border: 1px solid rgba(99, 102, 241, 0.12);
+  border-radius: 16px;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  margin-bottom: 1rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+}
+
+body.saas-theme .title {
+  background: linear-gradient(92deg, #111827 10%, #4338ca 55%, #0891b2 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.saas-metrics {
+  margin-top: 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.saas-metric-item {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.9rem 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.saas-metric-value {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #312e81;
+}
+
+.saas-metric-label {
+  font-size: 0.86rem;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.saas-foundation-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.saas-foundation-card {
+  background: linear-gradient(180deg, #ffffff, #f8fbff);
+  border: 1px solid #dbeafe;
+  border-radius: 12px;
+  padding: 0.9rem;
+}
+
+.saas-foundation-card h3 {
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+  color: #1e3a8a;
+}
+
+.saas-foundation-card p {
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 900px) {
+  .saas-metrics,
+  .saas-foundation-grid {
+    grid-template-columns: 1fr;
+  }
+}
