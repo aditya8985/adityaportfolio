@@ -1,14 +1,21 @@
-# Aditya Portfolio (marco.fyi–inspired)
+# Aditya Mote — Portfolio
 
-Interactive product-design portfolio modeled after [marco.fyi](https://marco.fyi): soft UI chrome, scroll/parallax demos, clickable Take-Out & Availability prototypes, and an About grid with music + photos.
+React + Vite portfolio site.
 
-## Run
+## Local
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Customize
+## Deploy (Vercel)
 
-Edit `src/data/content.ts` for your name, email, about paragraphs, projects, and images.
+This repo is connected to Vercel. After pushing to `main`:
+
+1. Framework: **Vite**
+2. Root Directory: **`.`** (repo root — not the old `html-css-js-portfolio-main` folder)
+3. Build Command: `npm run build`
+4. Output Directory: `dist`
+
+Custom domains (e.g. adityamote.in) stay attached on the Vercel project — only the build output changes.
