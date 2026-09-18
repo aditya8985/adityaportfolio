@@ -1,0 +1,508 @@
+.contact-page {
+  padding-bottom: 80px;
+}
+
+.contact-wrap {
+  width: 100%;
+  max-width: none;
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  gap: 0;
+  padding-top: 12px;
+  padding-left: 56px;
+  padding-right: 56px;
+  box-sizing: border-box;
+}
+
+.contact-wrap > * {
+  grid-column: 2;
+}
+
+.contact-main {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  min-width: 0;
+}
+
+.contact-card {
+  background: #f7f7f9;
+  border-radius: 28px;
+  padding: 22px;
+}
+
+.contact-chat {
+  min-height: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.chat-head {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.chat-head > div {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.chat-status {
+  font-size: 11px;
+  font-weight: 500;
+  color: #8a8a90;
+}
+
+.chat-avatar,
+.bubble-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.bubble-avatar {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.chat-thread {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px 0 8px;
+  max-height: 320px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.typing-bubble {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 54px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.typing-bubble span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8a8a90;
+  animation: typing-dot 1s ease-in-out infinite;
+}
+
+.typing-bubble span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.typing-bubble span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes typing-dot {
+  0%,
+  80%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+.composer-send:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.composer-field input:disabled {
+  opacity: 0.7;
+}
+
+.chat-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  max-width: 78%;
+}
+
+.chat-row.them {
+  align-self: flex-start;
+}
+
+.chat-row.me {
+  align-self: flex-end;
+}
+
+.chat-bubble {
+  padding: 12px 16px;
+  border-radius: 20px;
+  font-size: 15px;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+}
+
+.chat-bubble.them {
+  background: #e9e9eb;
+  color: #1a1a1a;
+  border-bottom-left-radius: 6px;
+}
+
+.chat-bubble.me {
+  background: linear-gradient(180deg, #5b8cff 0%, #3478f6 100%);
+  color: #fff;
+  border-bottom-right-radius: 6px;
+}
+
+.chat-composer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.composer-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.composer-icon {
+  color: #b0b0b5;
+  display: grid;
+  place-items: center;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.composer-icon:hover {
+  color: #1a1a1a;
+  transform: translateY(-1px);
+}
+
+.composer-icon.linkedin:hover {
+  color: #0a66c2;
+}
+
+.composer-field {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #e4e4e8;
+  border-radius: 999px;
+  padding: 6px 6px 6px 16px;
+}
+
+.composer-field input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font: inherit;
+  font-size: 15px;
+  color: #1a1a1a;
+}
+
+.composer-field input::placeholder {
+  color: #b5b5ba;
+}
+
+.composer-send {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #d8d8de;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.composer-send:hover {
+  background: #3478f6;
+  transform: scale(1.05);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.contact-email,
+.contact-linkedin {
+  position: relative;
+  overflow: hidden;
+  min-height: 300px;
+  background: #f7f7f9;
+  isolation: isolate;
+}
+
+.card-bleed {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  /* Start behind the logo in the top-right */
+  clip-path: circle(26px at calc(100% - 48px) 48px);
+  transition: clip-path 0.5s ease-in-out;
+  will-change: clip-path;
+}
+
+.contact-email .card-bleed {
+  background: #1c1c1e;
+}
+
+.contact-linkedin .card-bleed {
+  background: #0a66c2;
+}
+
+.contact-email.is-hot .card-bleed,
+.contact-linkedin.is-hot .card-bleed {
+  clip-path: circle(160% at calc(100% - 48px) 48px);
+}
+
+.card-inner {
+  position: relative;
+  z-index: 1;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.method-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.method-head strong {
+  display: block;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  transition: color 0.28s ease-in-out 0.04s;
+}
+
+.method-head span {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  color: #8a8a90;
+  transition: color 0.28s ease-in-out 0.04s;
+}
+
+.method-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.28s ease-in-out;
+}
+
+.email-logo {
+  background: #1c1c1e;
+  color: #fff;
+}
+
+.linkedin-logo {
+  background: #0a66c2;
+  color: #fff;
+}
+
+.linkedin-identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.linkedin-identity img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.email-preview {
+  flex: 1;
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.45;
+  transition:
+    background-color 0.3s ease-in-out 0.05s,
+    color 0.3s ease-in-out 0.05s;
+}
+
+.email-preview .muted {
+  color: #9a9a9f;
+  margin-right: 6px;
+  transition: color 0.28s ease-in-out 0.05s;
+}
+
+.email-subject {
+  font-weight: 650;
+  margin-top: 10px;
+  letter-spacing: -0.02em;
+  transition: color 0.28s ease-in-out 0.05s;
+}
+
+.email-body {
+  margin-top: 8px;
+  color: #6a6a70;
+  transition: color 0.28s ease-in-out 0.05s;
+}
+
+.linkedin-bio {
+  flex: 1;
+  font-size: 18px;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+  color: #1a1a1a;
+  transition: color 0.3s ease-in-out 0.05s;
+}
+
+.linkedin-bio .spark {
+  color: #0a66c2;
+  transition: color 0.28s ease-in-out 0.05s;
+}
+
+.method-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 999px;
+  border: 1.5px solid #e0e0e5;
+  background: #fff;
+  color: #1a1a1a;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  transition:
+    background-color 0.32s ease-in-out 0.02s,
+    border-color 0.32s ease-in-out 0.02s,
+    color 0.32s ease-in-out 0.02s,
+    transform 0.2s ease-in-out;
+}
+
+.method-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Email — content shifts after the bleed expands */
+.contact-email.is-hot {
+  color: #fff;
+}
+
+.contact-email.is-hot .method-head strong,
+.contact-email.is-hot .email-subject {
+  color: #fff;
+}
+
+.contact-email.is-hot .method-head span,
+.contact-email.is-hot .email-body {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.contact-email.is-hot .email-preview {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.contact-email.is-hot .email-preview .muted {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.contact-email.is-hot .email-btn {
+  background: #2f2f32;
+  border-color: #2f2f32;
+  color: #fff;
+}
+
+.contact-email.is-hot .method-logo {
+  transform: scale(1.04);
+}
+
+/* LinkedIn — bleed expands from logo blue */
+.contact-linkedin.is-hot {
+  color: #fff;
+}
+
+.contact-linkedin.is-hot .method-head strong {
+  color: #fff;
+}
+
+.contact-linkedin.is-hot .method-head span,
+.contact-linkedin.is-hot .linkedin-bio {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.contact-linkedin.is-hot .linkedin-bio .spark {
+  color: #fff;
+}
+
+.contact-linkedin.is-hot .linkedin-logo {
+  background: #0858a8;
+  transform: scale(1.04);
+}
+
+.contact-linkedin.is-hot .linkedin-btn {
+  background: #0858a8;
+  border-color: #0858a8;
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .contact-wrap {
+    grid-template-columns: 8% 84% 8%;
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+}
+
+@media (max-width: 760px) {
+  .contact-wrap {
+    grid-template-columns: 1fr;
+    padding-inline: 22px;
+  }
+
+  .contact-wrap > * {
+    grid-column: 1;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chat-row {
+    max-width: 92%;
+  }
+
+  .contact-card {
+    border-radius: 22px;
+  }
+}
