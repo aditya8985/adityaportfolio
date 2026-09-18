@@ -518,25 +518,11 @@
   background: #111;
 }
 
-.arrow-hotspot-shop {
-  left: 6%;
-  right: 50%;
-  top: 34%;
-  height: 28%;
-}
-
-.arrow-hotspot-ar {
-  left: 8%;
-  right: 8%;
-  bottom: 18%;
-  height: 11%;
-}
-
-.arrow-hotspot-reset {
-  left: 10%;
-  right: 10%;
-  bottom: 8%;
-  height: 14%;
+.arrow-hotspot {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
 }
 
 .arrow-hint {
@@ -565,36 +551,15 @@
   z-index: 2;
 }
 
-.irctc-hotspot-home {
-  left: 8%;
-  right: 8%;
-  bottom: 38%;
-  height: 10%;
-}
-
-.irctc-hotspot-trains {
-  left: 8%;
-  right: 8%;
-  top: 28%;
-  height: 26%;
-}
-
-.irctc-hotspot-book {
-  left: 58%;
-  right: 8%;
-  top: 36%;
-  height: 28%;
-}
-
-.irctc-hotspot-ticket {
-  left: 8%;
-  right: 8%;
-  top: 14%;
-  bottom: 12%;
+.irctc-hotspot {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
 }
 
 .irctc-hint {
-  background: rgba(37, 99, 235, 0.92);
+  background: rgba(33, 85, 163, 0.92);
   color: #fff;
 }
 

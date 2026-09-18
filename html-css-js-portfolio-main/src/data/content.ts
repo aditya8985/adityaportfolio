@@ -11,6 +11,7 @@ export const site = {
   instagram: "@adityamote",
   bioShort: "i design things.",
   resume: "/Aditya_Mote_Resume.pdf",
+  avatar: "/profile-400.jpg",
   socials: {
     twitter: "https://twitter.com/",
     github: "https://github.com/aditya8985",
@@ -95,13 +96,13 @@ export const projects: {
   {
     id: "design-system",
     emoji: "▣",
-    title: "SaaS Design System",
+    title: "Design System",
     subtitle: "A scalable component library for product teams",
     href: "/work/design-system",
     visual: "image",
     cover: "/design-system-cover.png",
     figmaUrl:
-      "https://www.figma.com/design/WvCNNvmss0gNKzGyDz9Ona/Design-System?node-id=0-1&t=uC3Rb3KNAutfKkG7-1",
+      "https://www.figma.com/design/WvCNNvmss0gNKzGyDz9Ona/Design-System?node-id=0-1&t=KJrgiEsyXQwqDewq-1",
   },
   {
     id: "samayseva",
@@ -111,7 +112,7 @@ export const projects: {
     href: "/work/samayseva",
     visual: "samayseva",
     figmaUrl:
-      "https://www.figma.com/design/yb8YlX1jnRgRO3Dx0y3iv3/Project-2---SamaySeva?node-id=4-8&t=wkYgVvq2cg4NreZX-1",
+      "https://www.figma.com/design/yb8YlX1jnRgRO3Dx0y3iv3/Project-2---SamaySeva?node-id=0-1&t=goZSU8qmJOha66Wg-1",
   },
   {
     id: "arrow",
@@ -121,7 +122,7 @@ export const projects: {
     href: "/work/arrow",
     visual: "arrow",
     figmaUrl:
-      "https://www.figma.com/design/AD0k6kN956M6WvqbTwRJd9/Project-3---AR-based-Indoor-Navigation?node-id=9-2&t=s4rP3kFQTe2Bb80z-1",
+      "https://www.figma.com/design/AD0k6kN956M6WvqbTwRJd9/Project-3---AR-based-Indoor-Navigation?node-id=0-1&t=dhJZebD8L1A3AnWB-1",
   },
   {
     id: "microinteraction",
@@ -132,25 +133,27 @@ export const projects: {
     visual: "stacked",
     covers: ["/microinteraction/ui-1.jpg", "/microinteraction/ui-2.jpg"],
     figmaUrl:
-      "https://www.figma.com/design/zVLEhRdL6wVXkvkiruZGGx/Interaction?node-id=60-773&t=po3wUndgrTCvVfYc-0",
+      "https://www.figma.com/design/zVLEhRdL6wVXkvkiruZGGx/Interaction?node-id=0-1&t=YLEehpsVgdlqnjqK-1",
   },
   {
     id: "ekartham",
     emoji: "◎",
     title: "Ekartham Academy Website",
-    subtitle: "Live academy site for course discovery & enquiries",
+    subtitle: "Live site — designed & developed by me",
     href: "/work/ekartham",
     visual: "browser",
-    cover: "/ekartham/hero.jpg",
-    liveUrl: "https://eca-commerce-hub-website.lovable.app/",
+    cover: "/ekartham/og-preview.png",
+    liveUrl: "https://ekarthamacademy.in/",
   },
   {
     id: "irctc",
     emoji: "🚆",
-    title: "IRCTC – Website Redesign",
-    subtitle: "A clearer train booking flow from search to ticket",
+    title: "IRCTC – Train Booking Redesign",
+    subtitle: "Mobile + website booking flow from search to ticket",
     href: "/work/irctc",
     visual: "irctc",
+    figmaUrl:
+      "https://www.figma.com/design/JLWSZ54ozyLU1543tYpbVj/Project-1---IRCTC-website-redesign?node-id=0-1&t=pL04AOINw4ULlxr8-1",
   },
 ];
 

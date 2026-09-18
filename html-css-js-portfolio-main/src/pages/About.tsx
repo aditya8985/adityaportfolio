@@ -13,8 +13,7 @@ import {
 import { site, listening, photos, podcast } from "../data/content";
 import "./About.css";
 
-const avatar =
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&crop=faces";
+const avatar = site.avatar;
 
 const sections = [
   {

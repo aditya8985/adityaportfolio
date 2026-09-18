@@ -4,8 +4,7 @@ import { ArrowUp, ArrowUpRight, Mail } from "lucide-react";
 import { site } from "../data/content";
 import "./Contact.css";
 
-const avatar =
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&crop=faces";
+const avatar = site.avatar;
 
 type Step = "name" | "phone" | "email" | "help" | "done";
 type ChatMessage = { id: number; from: "me" | "them" | "typing"; text: string };

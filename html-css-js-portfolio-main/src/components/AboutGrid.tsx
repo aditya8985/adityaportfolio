@@ -33,7 +33,9 @@ export function AboutGrid() {
           viewport={{ once: true }}
         >
           <div className="tw-head">
-            <div className="tw-avatar">{site.name.charAt(0)}</div>
+            <div className="tw-avatar">
+              <img src={site.avatar} alt="" />
+            </div>
             <div>
               <strong>{site.fullName}</strong>
               <small>{site.handle}</small>

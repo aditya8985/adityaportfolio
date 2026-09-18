@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { Link, useParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight, ExternalLink, Figma } from "lucide-react";
@@ -15,10 +15,29 @@ import {
   type TypeStyle,
   type UiComponent,
 } from "../data/caseStudies";
+import { MicroPlayground } from "../components/MicroPlayground";
 import "./ProjectDetail.css";
 
 function isPhoneProject(id: string) {
   return id === "samayseva" || id === "arrow" || id === "irctc";
+}
+
+/** Dark text on light accents (e.g. Arrow neon), white on dark accents. */
+function onAccentColor(hex: string) {
+  const raw = hex.replace("#", "").trim();
+  const full =
+    raw.length === 3
+      ? raw
+          .split("")
+          .map((c) => c + c)
+          .join("")
+      : raw;
+  if (full.length !== 6) return "#111";
+  const r = parseInt(full.slice(0, 2), 16);
+  const g = parseInt(full.slice(2, 4), 16);
+  const b = parseInt(full.slice(4, 6), 16);
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.62 ? "#111111" : "#ffffff";
 }
 
 function hasSystemBlocks(ch?: CaseSection) {
@@ -41,6 +60,7 @@ function TypeScaleBlock({ items }: { items: TypeStyle[] }) {
             <strong>{t.name}</strong>
             <span>
               {t.size} · {t.weight} · LH {t.lineHeight}
+              {t.fontFamily ? ` · ${t.fontFamily.split(",")[0]}` : ""}
             </span>
             <em>{t.usage}</em>
           </div>
@@ -50,6 +70,7 @@ function TypeScaleBlock({ items }: { items: TypeStyle[] }) {
               fontSize: `${Math.min(parseInt(t.size, 10), 36)}px`,
               fontWeight: Number(t.weight),
               lineHeight: t.lineHeight,
+              fontFamily: t.fontFamily,
             }}
           >
             {t.sample}
@@ -218,20 +239,49 @@ function PersonasBlock({ items }: { items: Persona[] }) {
 
 function FlowBlock({ items }: { items: FlowStep[] }) {
   return (
-    <div className="cs-flow">
+    <ol className="cs-journey" aria-label="User flow">
       {items.map((step, i) => (
-        <div key={step.title} className="cs-flow-card">
-          <div className="cs-flow-wire" aria-hidden>
-            <span />
-            <span />
-            <span />
+        <li key={step.title} className="cs-journey-step">
+          <div className="cs-journey-rail" aria-hidden>
+            <span className="cs-journey-node">{String(i + 1).padStart(2, "0")}</span>
+            {i < items.length - 1 && <span className="cs-journey-line" />}
           </div>
-          <strong>
-            <em>{String(i + 1).padStart(2, "0")}</em> {step.title}
-          </strong>
-          <p>{step.detail}</p>
-        </div>
+          <div className="cs-journey-card">
+            <strong>{step.title}</strong>
+            <p>{step.detail}</p>
+          </div>
+        </li>
       ))}
+    </ol>
+  );
+}
+
+function DiagramBlock({
+  diagram,
+}: {
+  diagram: { src: string; alt: string; caption?: string };
+}) {
+  return (
+    <figure className="cs-diagram">
+      <img src={diagram.src} alt={diagram.alt} />
+      {diagram.caption && <figcaption>{diagram.caption}</figcaption>}
+    </figure>
+  );
+}
+
+function LoopVideo({ src, label }: { src: string; label: string }) {
+  return (
+    <div className="cs-video-stage">
+      <video
+        className="cs-video"
+        src={src}
+        autoPlay
+        muted
+        loop
+        playsInline
+        controls={false}
+        aria-label={label}
+      />
     </div>
   );
 }
@@ -274,6 +324,7 @@ function SystemPreview({
                 style={{
                   fontSize: Math.min(parseInt(t.size, 10), 28),
                   fontWeight: Number(t.weight),
+                  fontFamily: t.fontFamily,
                 }}
               >
                 Aa
@@ -322,7 +373,7 @@ function SystemPreview({
     const src = chapter.media?.[0] ?? "/design-system-components.png";
     const href =
       figmaUrl ??
-      "https://www.figma.com/design/WvCNNvmss0gNKzGyDz9Ona/Design-System?node-id=0-1&t=uC3Rb3KNAutfKkG7-1";
+      "https://www.figma.com/design/WvCNNvmss0gNKzGyDz9Ona/Design-System?node-id=0-1&t=KJrgiEsyXQwqDewq-1";
     return (
       <div className="sys-preview sys-preview-figma">
         <p className="sys-preview-kicker">Component library</p>
@@ -516,10 +567,18 @@ export function ProjectDetail() {
     );
   }
 
-  const phone = isPhoneProject(project.id);
+  const phone = isPhoneProject(project.id) && !active?.diagram;
 
   return (
-    <main className="page cs-page" style={{ ["--cs-accent" as string]: study.accent }}>
+    <main
+      className="page cs-page"
+      style={
+        {
+          ["--cs-accent" as string]: study.accent,
+          ["--cs-on-accent" as string]: onAccentColor(study.accent),
+        } as CSSProperties
+      }
+    >
       <div className="cs-progress" aria-hidden>
         <span style={{ transform: `scaleX(${progress})` }} />
       </div>
@@ -640,6 +699,13 @@ export function ProjectDetail() {
               {ch.components && <ComponentsBlock items={ch.components} />}
               {ch.timeline && <TimelineBlock items={ch.timeline} />}
               {ch.personas && <PersonasBlock items={ch.personas} />}
+              {ch.diagram && <DiagramBlock diagram={ch.diagram} />}
+              {ch.id === "prototype" && study.video && (
+                <div className="cs-video-inline">
+                  <LoopVideo src={study.video} label={`${study.headline} prototype demo`} />
+                </div>
+              )}
+              {ch.id === "innovative" && <MicroPlayground />}
               {ch.flowSteps && <FlowBlock items={ch.flowSteps} />}
               {ch.finalScreens && <FinalUiBlock items={ch.finalScreens} />}
               {ch.tags && (
@@ -668,7 +734,12 @@ export function ProjectDetail() {
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
               >
-                {showSystemStage && active ? (
+                {study.video ? (
+                  <LoopVideo
+                    src={study.video}
+                    label={`${active?.title ?? study.headline} demo`}
+                  />
+                ) : showSystemStage && active ? (
                   <SystemPreview chapter={active} figmaUrl={study.figmaUrl} />
                 ) : (
                   <MediaStage

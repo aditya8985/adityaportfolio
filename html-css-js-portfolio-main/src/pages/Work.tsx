@@ -8,8 +8,8 @@ import "./Work.css";
 const featured = projects;
 
 type SamayStep = "home" | "schedule" | "queue";
-type ArrowStep = "landing" | "shop" | "ar";
-type IrctcStep = "home" | "trains" | "book" | "ticket";
+type ArrowStep = "landing" | "search" | "shop" | "ar" | "arrived";
+type IrctcStep = "home" | "trains" | "passengers" | "payment" | "ticket";
 
 const samayScreens: Record<SamayStep, { src: string; hint: string }> = {
   home: { src: "/samayseva/home.png", hint: "Tap clinic card" },
@@ -18,22 +18,34 @@ const samayScreens: Record<SamayStep, { src: string; hint: string }> = {
 };
 
 const arrowScreens: Record<ArrowStep, { src: string; hint: string }> = {
-  landing: { src: "/arrow/landing.jpg", hint: "Tap a shop" },
-  shop: { src: "/arrow/shop.jpg", hint: "Open AR View" },
-  ar: { src: "/arrow/ar.jpg", hint: "Follow the arrow" },
+  landing: { src: "/arrow/landing.png", hint: "Search stores" },
+  search: { src: "/arrow/search.png", hint: "Open a place" },
+  shop: { src: "/arrow/shop.png", hint: "Start AR View" },
+  ar: { src: "/arrow/ar-turn.png", hint: "Follow the arrow" },
+  arrived: { src: "/arrow/arrived.jpg", hint: "You arrived · restart" },
+};
+
+const arrowNext: Record<ArrowStep, ArrowStep> = {
+  landing: "search",
+  search: "shop",
+  shop: "ar",
+  ar: "arrived",
+  arrived: "landing",
 };
 
 const irctcScreens: Record<IrctcStep, { src: string; hint: string }> = {
-  home: { src: "/irctc/home.jpg", hint: "Search trains" },
-  trains: { src: "/irctc/trains.jpg", hint: "Pick a class" },
-  book: { src: "/irctc/book.png", hint: "Book ticket" },
-  ticket: { src: "/irctc/ticket.png", hint: "Ticket ready" },
+  home: { src: "/irctc/home.png", hint: "Search trains" },
+  trains: { src: "/irctc/trains.png", hint: "Pick a class" },
+  passengers: { src: "/irctc/passengers.png", hint: "Proceed to pay" },
+  payment: { src: "/irctc/payment.png", hint: "Confirm payment" },
+  ticket: { src: "/irctc/ticket.png", hint: "Ticket ready · restart" },
 };
 
 const irctcNext: Record<IrctcStep, IrctcStep> = {
   home: "trains",
-  trains: "book",
-  book: "ticket",
+  trains: "passengers",
+  passengers: "payment",
+  payment: "ticket",
   ticket: "home",
 };
 
@@ -183,13 +195,7 @@ function ArrowVisual() {
   const advance = (e: MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setStep((s) => (s === "landing" ? "shop" : s === "shop" ? "ar" : "landing"));
-  };
-
-  const goLanding = (e: MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setStep("landing");
+    setStep((s) => arrowNext[s]);
   };
 
   return (
@@ -202,7 +208,7 @@ function ArrowVisual() {
     >
       <div className="wv-phone arrow-back" aria-hidden>
         <div className="wv-phone-bezel arrow-bezel">
-          <img src="/arrow/splash.jpg" alt="" className="samay-screen-img" />
+          <img src="/arrow/splash.png" alt="" className="samay-screen-img" />
         </div>
       </div>
 
@@ -222,32 +228,12 @@ function ArrowVisual() {
             />
           </AnimatePresence>
 
-          {step === "landing" ? (
-            <button
-              type="button"
-              className="samay-hotspot arrow-hotspot-shop"
-              aria-label="Open shop location"
-              onClick={advance}
-            />
-          ) : null}
-
-          {step === "shop" ? (
-            <button
-              type="button"
-              className="samay-hotspot arrow-hotspot-ar"
-              aria-label="Open AR navigation"
-              onClick={advance}
-            />
-          ) : null}
-
-          {step === "ar" ? (
-            <button
-              type="button"
-              className="samay-hotspot arrow-hotspot-reset"
-              aria-label="Restart Arrow demo"
-              onClick={goLanding}
-            />
-          ) : null}
+          <button
+            type="button"
+            className={`samay-hotspot arrow-hotspot arrow-hotspot-${step}`}
+            aria-label={arrowScreens[step].hint}
+            onClick={advance}
+          />
 
           <span className="samay-hint arrow-hint">{arrowScreens[step].hint}</span>
         </div>

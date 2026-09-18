@@ -177,7 +177,7 @@ export function BentoHome() {
               <div className="social-head">
                 <img
                   className="social-avatar"
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&crop=faces"
+                  src={site.avatar}
                   alt=""
                 />
                 <div className="social-meta">
