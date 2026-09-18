@@ -789,9 +789,9 @@
     grid-auto-rows: auto;
     gap: 12px;
     grid-template-areas:
-      "shortcuts phone"
-      "calendar phone"
-      "careers blocks"
+      "shortcuts careers"
+      "phone phone"
+      "calendar blocks"
       "moments arch";
   }
 
@@ -800,31 +800,73 @@
   }
 
   .wg-tall .wg-card {
-    min-height: 100%;
+    aspect-ratio: 16 / 10;
+    min-height: 0;
+    height: auto;
+  }
+
+  .wg-visual.wg-phone {
+    align-items: center;
+    padding: 18px 16px 12px;
+  }
+
+  .wg-device {
+    width: min(42%, 180px);
+  }
+
+  .wg-arrow {
+    left: 12px;
+    bottom: 12px;
+    width: 32px;
+    height: 32px;
   }
 
   .wg-key {
-    width: 58px;
-    height: 58px;
-    font-size: 22px;
+    width: 52px;
+    height: 52px;
+    font-size: 20px;
+  }
+
+  .wg-card {
+    border-radius: 22px;
+  }
+
+  .wg-card:hover {
+    transform: none;
   }
 }
 
 @media (max-width: 520px) {
   .wg-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-areas:
-      "shortcuts"
-      "phone"
-      "careers"
-      "calendar"
-      "moments"
-      "blocks"
-      "arch";
+      "shortcuts careers"
+      "phone phone"
+      "calendar blocks"
+      "moments arch";
   }
 
   .wg-tall .wg-card {
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 4 / 3;
+  }
+
+  .wg-device {
+    width: min(48%, 160px);
+  }
+
+  .wg-visual.wg-shortcuts {
+    padding: 14px 12px 40px;
+  }
+
+  .wg-key-col {
+    min-width: 58px;
+    gap: 6px;
+  }
+
+  .wg-key {
+    width: 48px;
+    height: 48px;
+    font-size: 18px;
   }
 }
 

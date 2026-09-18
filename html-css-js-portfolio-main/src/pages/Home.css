@@ -48,7 +48,8 @@
   }
 
   .home .work-gallery {
-    padding-bottom: calc(var(--nav-h) + 28px + env(safe-area-inset-bottom, 0px));
+    padding-top: 12px;
+    padding-bottom: calc(var(--nav-h) + 20px + env(safe-area-inset-bottom, 0px));
   }
 
   .home .wg-grid {
@@ -56,8 +57,6 @@
   }
 
   .home-footer {
-    flex-direction: column;
-    gap: 8px;
-    text-align: center;
+    display: none;
   }
 }

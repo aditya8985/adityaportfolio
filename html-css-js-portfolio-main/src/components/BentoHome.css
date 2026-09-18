@@ -436,31 +436,145 @@
 
   .bento-intro {
     min-height: auto;
+    padding: 32px 28px;
+  }
+
+  .intro-title {
+    margin-bottom: 24px;
+  }
+
+  .intro-lines {
+    gap: 12px;
+  }
+
+  .bento-right {
+    gap: 12px;
   }
 
   .look-around {
     position: static;
-    margin-left: auto;
-    margin-bottom: -4px;
+    align-self: flex-end;
+    margin: 0;
+  }
+
+  .bento-workspace {
+    flex: none;
+    min-height: 0;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ws-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0;
+    padding-right: 40px;
+  }
+
+  .ws-docs {
+    padding-bottom: 0;
+  }
+
+  .ws-doc {
+    flex: 0 0 132px;
+    padding: 12px 10px;
+  }
+
+  .ws-dock {
+    width: 100%;
+    max-width: 100%;
+    justify-content: flex-start;
+    padding: 8px 10px;
+    gap: 6px;
+  }
+
+  .ws-app {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  .ws-link {
+    left: auto;
+    right: 14px;
+    top: 14px;
+    bottom: auto;
+    width: 32px;
+    height: 32px;
+  }
+
+  .bento-bottom-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .bento-phone {
+    min-height: 0;
+    padding: 12px 12px 0;
+  }
+
+  .phone-preview {
+    min-height: 0;
+    border-radius: 24px 24px 0 0;
+  }
+
+  .bento-social {
+    min-height: 0;
+    padding: 20px 18px;
+    justify-content: flex-start;
   }
 }
 
 @media (max-width: 640px) {
   .bento {
-    padding-top: 28px;
+    padding-top: 20px;
     padding-bottom: 0;
   }
 
   .bento-intro {
-    padding: 28px 22px;
+    padding: 24px 20px;
     border-radius: 22px;
   }
 
-  .bento-bottom-row {
-    grid-template-columns: 1fr;
+  .intro-title {
+    font-size: clamp(1.45rem, 6.5vw, 1.85rem);
+    margin-bottom: 18px;
+  }
+
+  .intro-lines p {
+    font-size: 0.98rem;
   }
 
   .bento-card {
     border-radius: 22px;
+  }
+
+  .bento-workspace {
+    padding: 14px;
+    border-radius: 22px;
+  }
+
+  .ws-doc {
+    flex: 0 0 120px;
+  }
+
+  .pp-discover {
+    font-size: 20px;
+  }
+
+  .pp-cards {
+    gap: 6px;
+  }
+
+  .pp-card img {
+    height: 48px;
+  }
+
+  .social-bio {
+    font-size: 13px;
   }
 }
