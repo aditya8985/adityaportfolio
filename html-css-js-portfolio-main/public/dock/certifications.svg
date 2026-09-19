@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Certifications">
+  <rect width="64" height="64" rx="14" fill="#0F766E"/>
+  <path fill="#fff" d="M32 10.5l4.2 8.5 9.4 1.4-6.8 6.6 1.6 9.3L32 31.8l-8.4 4.5 1.6-9.3-6.8-6.6 9.4-1.4L32 10.5z"/>
+  <path fill="#99F6E4" d="M24.5 38.5h15v3.2c0 2.4-1.9 4.3-4.3 4.3h-6.4c-2.4 0-4.3-1.9-4.3-4.3v-3.2z"/>
+  <path fill="#CCFBF1" d="M27.2 45.8h9.6l1.8 7.2-6.6-3.4-6.6 3.4 1.8-7.2z"/>
+</svg>

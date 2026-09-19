@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Play } from "lucide-react";
-import { site, notionDocs, restaurants } from "../data/content";
+import { ArrowUpRight, Play, ThumbsUp, Globe2 } from "lucide-react";
+import { site, restaurants } from "../data/content";
 import "./BentoHome.css";
 
 const manifesto = [
@@ -15,14 +15,56 @@ const manifesto = [
   "the best things. an optimal amount.",
 ];
 const dockApps = [
-  { id: "finder", label: "Finder", color: "#5ac8fa", icon: "📁" },
-  { id: "notion", label: "Notion", color: "#000", icon: "N", active: true },
-  { id: "figma", label: "Figma", color: "#a259ff", icon: "F" },
-  { id: "webflow", label: "Webflow", color: "#4353ff", icon: "W" },
-  { id: "linear", label: "Linear", color: "#5e6ad2", icon: "L" },
-  { id: "slack", label: "Slack", color: "#e01e5a", icon: "S" },
-  { id: "arc", label: "Arc", color: "#1a1a1a", icon: "A" },
+  { id: "notion", label: "Notion", logo: "/dock/notion.svg" },
+  { id: "figma", label: "Figma", logo: "/dock/figma.svg" },
+  { id: "procreate", label: "Procreate", logo: "/dock/procreate.png", cover: true },
+  { id: "certifications", label: "Certifications", logo: "/dock/certifications.svg" },
+  { id: "mockup", label: "Mockup", logo: "/dock/mockup.png", cover: true },
+  { id: "miro", label: "Miro", logo: "/dock/miro.png", cover: true },
 ];
+
+const workspaceByApp: Record<string, { mark: string; title: string; docs: string[] }> = {
+  notion: {
+    mark: "N",
+    title: "NOTION",
+    docs: ["DotOS Notes", "1-on-1 Meeting Notes", "Project Timeline", "Tasks"],
+  },
+  figma: {
+    mark: "F",
+    title: "FIGMA",
+    docs: ["Design System", "Mobile Flows", "Component Library", "Prototype"],
+  },
+  procreate: {
+    mark: "P",
+    title: "PROCREATE",
+    docs: ["Sketch Studies", "Texture Pack", "Illustration Set", "Brush Set"],
+  },
+  certifications: {
+    mark: "C",
+    title: "CERTIFICATIONS",
+    docs: ["Google UX", "NN/g UX", "Figma Advanced", "Accessibility"],
+  },
+  mockup: {
+    mark: "M",
+    title: "MOCKUP",
+    docs: ["Device Frames", "App Store Kit", "Web Browser", "Presentation"],
+  },
+  miro: {
+    mark: "M",
+    title: "MIRO",
+    docs: ["Affinity Map", "User Journey", "Workshop Board", "IA Map"],
+  },
+};
+
+const linkedInPost = {
+  url: "https://www.linkedin.com/posts/aditya-mote-aa78b4199_uiux-activity-7247502098802585601-bDYp?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC6VzB8B2bgs5-yZmawjrJug8wJJ3GV1Vps",
+  headline: "UX UI Designer | Computer Engineer",
+  body: "Learning glassmorphism in UI/UX involves mastering the use of transparency, blur, and layering to create depth while ensuring accessibility and clarity in design.",
+  tag: "#uiux",
+  likes: 24,
+  when: "1yr",
+  media: ["/linkedin/glass-mobile.png", "/linkedin/glass-dash.png"],
+};
 
 const fadeUp = {
   initial: { opacity: 0, y: 18 },
@@ -33,6 +75,7 @@ export function BentoHome() {
   const [activeApp, setActiveApp] = useState("notion");
   const [docIndex, setDocIndex] = useState(0);
   const [looking, setLooking] = useState(false);
+  const workspace = workspaceByApp[activeApp] ?? workspaceByApp.notion;
 
   return (
     <section className="bento page-pad">
@@ -86,12 +129,12 @@ export function BentoHome() {
           >
             <div className="ws-header">
               <span className="ws-label">
-                <span className="ws-notion-mark">N</span> NOTION
+                <span className="ws-notion-mark">{workspace.mark}</span> {workspace.title}
               </span>
             </div>
 
             <div className="ws-docs">
-              {notionDocs.slice(0, 4).map((doc, i) => (
+              {workspace.docs.map((doc, i) => (
                 <button
                   key={doc}
                   type="button"
@@ -111,12 +154,20 @@ export function BentoHome() {
                   key={app.id}
                   type="button"
                   className={`ws-app${activeApp === app.id ? " active" : ""}`}
-                  onClick={() => setActiveApp(app.id)}
+                  onClick={() => {
+                    setActiveApp(app.id);
+                    setDocIndex(0);
+                  }}
                   title={app.label}
-                  style={{ ["--app-color" as string]: app.color }}
+                  aria-label={app.label}
+                  aria-pressed={activeApp === app.id}
                 >
-                  <span>{app.icon}</span>
-                  {app.active || activeApp === app.id ? <i className="ws-new">new</i> : null}
+                  <img
+                    className={`ws-app-logo${"cover" in app && app.cover ? " is-cover" : ""}`}
+                    src={app.logo}
+                    alt=""
+                  />
+                  {activeApp === app.id ? <i className="ws-new">new</i> : null}
                 </button>
               ))}
             </div>
@@ -169,32 +220,63 @@ export function BentoHome() {
               </div>
             </motion.div>
 
-            <motion.div
-              className="bento-card bento-social"
+            <motion.a
+              href={linkedInPost.url}
+              target="_blank"
+              rel="noreferrer"
+              className="bento-card bento-linkedin"
               {...fadeUp}
               transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.42 }}
             >
-              <div className="social-head">
-                <img
-                  className="social-avatar"
-                  src={site.avatar}
-                  alt=""
-                />
-                <div className="social-meta">
-                  <strong>{site.fullName}</strong>
-                  <span>{site.handle}</span>
+              <span className="li-orb li-orb-a" aria-hidden />
+              <span className="li-orb li-orb-b" aria-hidden />
+              <span className="li-frost" aria-hidden />
+
+              <div className="li-head">
+                <div className="li-avatar-wrap">
+                  <img className="li-avatar" src={site.avatar} alt="" />
                 </div>
-                <span className="social-x" aria-hidden>
-                  𝕏
+                <div className="li-meta">
+                  <div className="li-name-row">
+                    <strong>{site.fullName}</strong>
+                    <span className="li-you">You</span>
+                  </div>
+                  <span className="li-headline">{linkedInPost.headline}</span>
+                  <span className="li-when">
+                    {linkedInPost.when}
+                    <Globe2 size={11} strokeWidth={2} aria-hidden />
+                  </span>
+                </div>
+                <span className="li-mark" aria-hidden>
+                  in
                 </span>
               </div>
-              <p className="social-bio">
-                cooking up • product design • prev{" "}
-                <a href="https://figma.com" target="_blank" rel="noreferrer">
-                  @figma
-                </a>
+
+              <p className="li-body">
+                {linkedInPost.body}{" "}
+                <span className="li-tag">{linkedInPost.tag}</span>
               </p>
-            </motion.div>
+
+              <div className="li-media" aria-hidden>
+                {linkedInPost.media.map((src) => (
+                  <div key={src} className="li-shot">
+                    <img src={src} alt="" />
+                  </div>
+                ))}
+              </div>
+
+              <div className="li-foot">
+                <span className="li-likes">
+                  <span className="li-like-icon">
+                    <ThumbsUp size={11} strokeWidth={2.5} fill="currentColor" />
+                  </span>
+                  {linkedInPost.likes}
+                </span>
+                <span className="li-cta">
+                  View post <ArrowUpRight size={13} strokeWidth={2.2} />
+                </span>
+              </div>
+            </motion.a>
           </div>
         </div>
       </div>
