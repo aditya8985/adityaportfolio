@@ -436,133 +436,640 @@
   color: #166534;
 }
 
-/* Careers */
+/* Careers — Product Design showcase */
 .wg-visual.wg-careers {
-  position: relative;
+  position: absolute;
+  inset: 0;
   overflow: hidden;
+  display: block;
+  place-items: unset;
+  padding: 0;
+  background:
+    radial-gradient(90% 70% at 85% 10%, rgba(255, 210, 170, 0.35), transparent 55%),
+    radial-gradient(80% 60% at 10% 90%, rgba(160, 200, 255, 0.28), transparent 50%),
+    linear-gradient(165deg, #f5f2ed 0%, #ebe6df 55%, #e2dbd2 100%);
 }
 
-.wg-visual.wg-careers h3 {
+.wg-pd {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 14px 14px 52px;
+}
+
+.wg-pd-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(40, 36, 30, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(40, 36, 30, 0.05) 1px, transparent 1px);
+  background-size: 16px 16px;
+  mask-image: radial-gradient(circle at 50% 42%, #000 25%, transparent 78%);
+  pointer-events: none;
+}
+
+.wg-pd-stack {
+  position: absolute;
+  left: 14px;
+  right: 42px;
+  top: 14px;
+  bottom: 52px;
+}
+
+.wg-pd-frame {
+  position: absolute;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid rgba(40, 36, 30, 0.08);
+  box-shadow: 0 10px 24px rgba(40, 36, 30, 0.1);
+  overflow: hidden;
+  transition:
+    transform 0.5s var(--ease),
+    box-shadow 0.5s var(--ease);
+}
+
+.wg-pd-frame header {
+  display: flex;
+  gap: 4px;
+  padding: 7px 8px 5px;
+  background: #f3f1ed;
+  border-bottom: 1px solid rgba(40, 36, 30, 0.06);
+}
+
+.wg-pd-frame header span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #cfc8bf;
+}
+
+.wg-pd-frame header span:nth-child(1) {
+  background: #e8a090;
+}
+
+.wg-pd-frame header span:nth-child(2) {
+  background: #e0c56a;
+}
+
+.wg-pd-frame header span:nth-child(3) {
+  background: #8fbf9a;
+}
+
+.wg-pd-frame.f1 {
+  width: 56%;
+  height: 58%;
+  left: 0;
+  top: 6%;
+  z-index: 1;
+  transform: rotate(-5deg);
+  transform-origin: center center;
+}
+
+.wg-pd-frame.f2 {
+  width: 54%;
+  height: 60%;
+  right: 0;
+  top: 12%;
+  z-index: 2;
+  transform: rotate(4deg);
+  transform-origin: center center;
+}
+
+.wg-pd-frame.f3 {
+  width: 36%;
+  height: 54%;
+  left: 32%;
+  bottom: 0;
+  z-index: 3;
+  border-radius: 14px;
+  background: #1f1a14;
+  border-color: transparent;
+  transform: rotate(-1.5deg);
+  transform-origin: center center;
+}
+
+.wg-pd-wire {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: calc(100% - 22px);
+  box-sizing: border-box;
+}
+
+.wg-pd-wire .hero {
+  display: block;
+  height: 28%;
+  border-radius: 6px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #ece7e0,
+    #ece7e0 3px,
+    #e2dbd2 3px,
+    #e2dbd2 6px
+  );
+}
+
+.wg-pd-wire .row {
+  display: block;
+  height: 7px;
+  border-radius: 4px;
+  background: #e5dfd6;
+}
+
+.wg-pd-wire .row.short {
+  width: 62%;
+}
+
+.wg-pd-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4px;
+  margin-top: auto;
+}
+
+.wg-pd-cards em {
+  display: block;
+  aspect-ratio: 1;
+  border-radius: 5px;
+  background: #efe9e1;
+  border: 1px dashed rgba(40, 36, 30, 0.15);
+}
+
+.wg-pd-hi {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: calc(100% - 22px);
+  box-sizing: border-box;
+}
+
+.wg-pd-nav {
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #1f1a14 35%, #e8e2da 35%);
+}
+
+.wg-pd-panel {
+  flex: 1;
+  border-radius: 8px;
+  background: linear-gradient(160deg, #fff7ef, #f0e8de);
+  padding: 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 0;
+}
+
+.wg-pd-panel b {
+  display: block;
+  height: 7px;
+  border-radius: 4px;
+  background: #d9cfc3;
+}
+
+.wg-pd-panel b.mid {
+  width: 78%;
+  background: #c45c2a;
+  opacity: 0.75;
+}
+
+.wg-pd-panel b.sm {
+  width: 52%;
+}
+
+.wg-pd-cta {
+  height: 12px;
+  border-radius: 999px;
+  background: #1f1a14;
+  flex-shrink: 0;
+}
+
+.wg-pd-proto {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 8px 6px;
+  box-sizing: border-box;
+}
+
+.wg-pd-phone {
+  width: 72%;
+  height: 92%;
+  border-radius: 10px;
+  background: #2a2420;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 6px 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  box-sizing: border-box;
+}
+
+.wg-pd-phone .notch {
+  display: block;
+  width: 36%;
+  height: 4px;
+  margin: 0 auto;
+  border-radius: 999px;
+  background: #0c0a09;
+  flex-shrink: 0;
+}
+
+.wg-pd-phone .screen {
+  display: block;
+  flex: 1;
+  min-height: 0;
+  border-radius: 6px;
+  background:
+    linear-gradient(180deg, #c45c2a 0%, #c45c2a 28%, #f4efe8 28%, #f4efe8 100%);
+}
+
+.wg-pd-phone .bar {
+  display: block;
+  width: 40%;
+  height: 3px;
+  margin: 0 auto;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.25);
+  flex-shrink: 0;
+}
+
+.wg-pd-tools {
+  position: absolute;
+  right: 12px;
+  top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 4;
+}
+
+.wg-pd-tools .tok {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  background: #fff;
+  border: 1px solid rgba(40, 36, 30, 0.08);
+  box-shadow: 0 4px 10px rgba(40, 36, 30, 0.08);
+  display: grid;
+  place-items: center;
+  font-size: 9px;
+  font-weight: 700;
+  color: #1f1a14;
+  transition: transform 0.45s var(--ease);
+}
+
+.wg-pd-tools .tok.color {
+  border-radius: 50%;
+}
+
+.wg-pd-tools .tok.color.a {
+  background: #c45c2a;
+}
+
+.wg-pd-tools .tok.color.b {
+  background: #1f1a14;
+}
+
+.wg-pd-tools .tok.color.c {
+  background: #d8c4a2;
+}
+
+.wg-pd-label {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.wg-pd-label strong {
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: clamp(1.05rem, 3.8vw, 1.25rem);
+  letter-spacing: -0.03em;
+  color: #1f1a14;
+  line-height: 1.05;
+}
+
+.wg-pd-label em {
+  font-style: normal;
+  font-size: clamp(9px, 2vw, 11px);
+  color: #7a7268;
+  letter-spacing: 0.02em;
+}
+
+.wg-card:hover .wg-visual.wg-careers {
+  filter: grayscale(0) contrast(1);
+  transform: none;
+}
+
+.wg-card:hover .wg-pd-frame.f1 {
+  transform: rotate(-8deg) translate(-4px, -2px);
+}
+
+.wg-card:hover .wg-pd-frame.f2 {
+  transform: rotate(7deg) translate(5px, -2px);
+}
+
+.wg-card:hover .wg-pd-frame.f3 {
+  transform: rotate(0deg) translateY(-4px) scale(1.03);
+  box-shadow: 0 16px 28px rgba(40, 36, 30, 0.2);
+}
+
+.wg-card:hover .wg-pd-tools .tok:nth-child(1) {
+  transform: translateX(-3px);
+}
+
+.wg-card:hover .wg-pd-tools .tok:nth-child(2) {
+  transform: translateX(-6px);
+}
+
+.wg-card:hover .wg-pd-tools .tok:nth-child(3) {
+  transform: translateX(-4px);
+}
+
+.wg-card:hover .wg-pd-tools .tok:nth-child(4) {
+  transform: translateX(-7px);
+}
+
+.wg-card:hover .wg-pd-tools .tok:nth-child(5) {
+  transform: translateX(-5px);
+}
+
+@media (max-width: 520px) {
+  .wg-pd {
+    padding: 12px 12px 48px;
+  }
+
+  .wg-pd-stack {
+    left: 12px;
+    right: 36px;
+    top: 12px;
+    bottom: 48px;
+  }
+
+  .wg-pd-tools {
+    right: 10px;
+    top: 12px;
+  }
+
+  .wg-pd-tools .tok {
+    width: 18px;
+    height: 18px;
+    font-size: 8px;
+    border-radius: 6px;
+  }
+
+  .wg-pd-label {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wg-pd-frame,
+  .wg-pd-tools .tok {
+    transition: none;
+  }
+}
+
+/* Blocks — magnetic credit card */
+.wg-visual.wg-blocks {
+  display: grid;
+  place-items: center;
+  perspective: 900px;
+  perspective-origin: 50% 45%;
+  cursor: pointer;
+  padding: 18px;
+  background:
+    radial-gradient(circle at 50% 40%, #f3f3f5 0%, #e8e8ec 70%);
+}
+
+.wg-card-interactive:hover .wg-visual.wg-blocks,
+.wg-visual.wg-blocks.is-hot {
+  filter: grayscale(0) contrast(1);
+  transform: none;
+}
+
+.wg-cc {
+  position: relative;
+  width: min(92%, 210px);
+  aspect-ratio: 1.586 / 1;
+  border-radius: 16px;
+  padding: 14px 16px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #f5f5f5;
+  background:
+    linear-gradient(145deg, #2a2a2e 0%, #111114 48%, #0a0a0c 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition:
+    background 0.45s var(--ease),
+    box-shadow 0.45s var(--ease),
+    border-color 0.45s var(--ease),
+    color 0.45s var(--ease);
+}
+
+.wg-cc-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.14) 42%,
+    transparent 58%
+  );
+  opacity: 0.55;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.wg-blocks.is-hot .wg-cc,
+.wg-card:hover .wg-cc {
+  color: #fff;
+  background:
+    linear-gradient(145deg, #e11d2e 0%, #b01020 45%, #7a0a14 100%);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow:
+    0 22px 44px rgba(176, 16, 32, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+.wg-cc-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
   position: relative;
   z-index: 1;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.6rem, 2.4vw, 2.2rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-  color: #3a3a3e;
-  text-align: center;
 }
 
-.wg-visual.wg-careers h3 small {
+.wg-cc-brand {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.wg-cc-chip {
+  width: 34px;
+  height: 26px;
+  border-radius: 6px;
+  background: linear-gradient(145deg, #d8d8d8, #9a9a9a 55%, #cfcfcf);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  padding: 3px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+.wg-blocks.is-hot .wg-cc-chip,
+.wg-card:hover .wg-cc-chip {
+  background: linear-gradient(145deg, #ffe08a, #e0a83a 55%, #f5d478);
+}
+
+.wg-cc-chip i {
   display: block;
-  margin-top: 6px;
-  font-family: var(--font);
-  font-size: 0.42em;
-  font-weight: 500;
-  letter-spacing: 0;
-  color: #8a8a90;
+  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.12);
 }
 
-.wg-plant {
-  position: absolute;
-  width: 54px;
-  height: 70px;
-  border-radius: 40% 40% 45% 45%;
-  background: linear-gradient(160deg, #7dcea0, #2e8b57 70%);
-  opacity: 0.85;
-  filter: blur(0.2px);
-}
-
-.wg-plant.p1 {
-  left: 10%;
-  bottom: 12%;
-  transform: rotate(-12deg);
-}
-
-.wg-plant.p2 {
-  right: 12%;
-  top: 14%;
-  width: 42px;
-  height: 56px;
-  transform: rotate(18deg);
-  background: linear-gradient(160deg, #a8e6cf, #3cb371);
-}
-
-.wg-plant.p3 {
-  right: 18%;
-  bottom: 18%;
-  width: 36px;
-  height: 48px;
-  background: linear-gradient(160deg, #88d8a3, #228b22);
-}
-
-/* Blocks */
-.wg-iso {
-  width: 110px;
-  height: 110px;
+.wg-cc-wave {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-top: 2px;
   position: relative;
-  transform: rotateX(58deg) rotateZ(45deg);
-  transform-style: preserve-3d;
+  z-index: 1;
 }
 
-.wg-iso .face {
+.wg-cc-wave span {
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+  transform: rotate(45deg);
+}
+
+.wg-cc-wave span:nth-child(2) {
+  width: 14px;
+  height: 14px;
+  opacity: 0.75;
+}
+
+.wg-cc-wave span:nth-child(3) {
+  width: 18px;
+  height: 18px;
+  opacity: 0.5;
+}
+
+.wg-cc-number {
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  font-size: clamp(11px, 2.4vw, 13px);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  font-variant-numeric: tabular-nums;
+}
+
+.wg-cc-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.wg-cc-foot small {
+  display: block;
+  font-size: 7px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.65;
+  margin-bottom: 2px;
+}
+
+.wg-cc-foot strong {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  line-height: 1.15;
+}
+
+.wg-cc-exp strong {
+  font-size: 10px;
+}
+
+.wg-cc-mark {
+  width: 36px;
+  height: 22px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.wg-cc-mark i {
   position: absolute;
-  width: 48px;
-  height: 48px;
-  background: #c8c8ce;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+  top: 1px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
 }
 
-.wg-iso .top {
-  transform: translate3d(20px, 8px, 24px) rotateX(90deg);
-  background: #e4e4e8;
+.wg-cc-mark i:first-child {
+  left: 0;
+  background: rgba(255, 255, 255, 0.55);
 }
 
-.wg-iso .left {
-  transform: translate3d(0, 20px, 24px) rotateY(-90deg);
-  background: #a8a8b0;
+.wg-cc-mark i:last-child {
+  right: 0;
+  background: rgba(255, 255, 255, 0.28);
 }
 
-.wg-iso .right {
-  transform: translate3d(20px, 20px, 0);
-  background: #bcbcc4;
+.wg-blocks.is-hot .wg-cc-mark i:first-child,
+.wg-card:hover .wg-cc-mark i:first-child {
+  background: rgba(255, 220, 80, 0.95);
 }
 
-.wg-iso .top2 {
-  transform: translate3d(44px, -4px, 48px) rotateX(90deg);
-  background: #ececf0;
-  width: 36px;
-  height: 36px;
+.wg-blocks.is-hot .wg-cc-mark i:last-child,
+.wg-card:hover .wg-cc-mark i:last-child {
+  background: rgba(255, 120, 60, 0.85);
 }
 
-.wg-iso .left2 {
-  transform: translate3d(28px, 8px, 48px) rotateY(-90deg);
-  background: #9a9aa4;
-  width: 36px;
-  height: 36px;
+@media (max-width: 520px) {
+  .wg-visual.wg-blocks {
+    padding: 14px;
+  }
+
+  .wg-cc {
+    width: min(94%, 190px);
+    padding: 12px 14px 10px;
+    border-radius: 14px;
+  }
 }
 
-.wg-iso .right2 {
-  transform: translate3d(44px, 8px, 24px);
-  background: #b4b4bc;
-  width: 36px;
-  height: 36px;
-}
-
-.wg-card:hover .wg-iso .top,
-.wg-card:hover .wg-iso .top2 {
-  background: #f2e9ff;
-}
-
-.wg-card:hover .wg-iso .left,
-.wg-card:hover .wg-iso .left2 {
-  background: #9b7edc;
-}
-
-.wg-card:hover .wg-iso .right,
-.wg-card:hover .wg-iso .right2 {
-  background: #c4a8f5;
+@media (prefers-reduced-motion: reduce) {
+  .wg-cc {
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    transform: none !important;
+  }
 }
 
 /* Calendar */
@@ -873,5 +1380,9 @@
 @media (hover: none) {
   .wg-visual {
     filter: grayscale(0.35);
+  }
+
+  .wg-card:hover {
+    transform: none;
   }
 }

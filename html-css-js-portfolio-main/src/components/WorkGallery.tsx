@@ -8,7 +8,7 @@ import "./WorkGallery.css";
 const items = [
   {
     id: "shortcuts",
-    href: "/work/design-system",
+    href: "/about",
     span: "square",
     visual: "shortcuts" as const,
   },
@@ -232,27 +232,161 @@ function PhoneVisual() {
 function CareersVisual() {
   return (
     <div className="wg-visual wg-careers">
-      <span className="wg-plant p1" aria-hidden />
-      <span className="wg-plant p2" aria-hidden />
-      <span className="wg-plant p3" aria-hidden />
-      <h3>
-        Careers
-        <small>at CommandDot</small>
-      </h3>
+      <div className="wg-pd" aria-hidden>
+        <div className="wg-pd-grid" />
+        <div className="wg-pd-stack">
+          <article className="wg-pd-frame f1">
+            <header>
+              <span />
+              <span />
+              <span />
+            </header>
+            <div className="wg-pd-wire">
+              <i className="hero" />
+              <i className="row" />
+              <i className="row short" />
+              <div className="wg-pd-cards">
+                <em />
+                <em />
+                <em />
+              </div>
+            </div>
+          </article>
+          <article className="wg-pd-frame f2">
+            <header>
+              <span />
+              <span />
+              <span />
+            </header>
+            <div className="wg-pd-hi">
+              <div className="wg-pd-nav" />
+              <div className="wg-pd-panel">
+                <b />
+                <b className="mid" />
+                <b className="sm" />
+              </div>
+              <div className="wg-pd-cta" />
+            </div>
+          </article>
+          <article className="wg-pd-frame f3">
+            <div className="wg-pd-proto">
+              <div className="wg-pd-phone">
+                <i className="notch" />
+                <i className="screen" />
+                <i className="bar" />
+              </div>
+            </div>
+          </article>
+        </div>
+        <div className="wg-pd-tools">
+          <span className="tok color a" />
+          <span className="tok color b" />
+          <span className="tok color c" />
+          <span className="tok type">Aa</span>
+          <span className="tok space">8</span>
+        </div>
+        <div className="wg-pd-label">
+          <strong>Product Design</strong>
+          <em>Research → UI → Prototype</em>
+        </div>
+      </div>
     </div>
   );
 }
 
+const CASHIER_SOUND = "/sounds/cashier-register.mp3";
+
+function playCashierSound() {
+  try {
+    const audio = new Audio(CASHIER_SOUND);
+    audio.volume = 0.5;
+    void audio.play().catch(() => {
+      /* autoplay may be blocked until a gesture; click/tap still works */
+    });
+  } catch {
+    /* ignore */
+  }
+}
+
 function BlocksVisual() {
+  const stageRef = useRef<HTMLDivElement>(null);
+  const [magnet, setMagnet] = useState({ x: 0, y: 0, rx: 0, ry: 0 });
+  const [active, setActive] = useState(false);
+
+  const onMove = (e: MouseEvent<HTMLDivElement>) => {
+    const el = stageRef.current;
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const mx = e.clientX - r.left - r.width / 2;
+    const my = e.clientY - r.top - r.height / 2;
+    // subtle magnetic pull toward pointer
+    setMagnet({
+      x: mx * 0.08,
+      y: my * 0.08,
+      rx: Math.max(-5, Math.min(5, -my * 0.025)),
+      ry: Math.max(-6, Math.min(6, mx * 0.028)),
+    });
+  };
+
+  const onEnter = () => {
+    setActive(true);
+  };
+
+  const onLeave = () => {
+    setActive(false);
+    setMagnet({ x: 0, y: 0, rx: 0, ry: 0 });
+  };
+
+  const onTap = () => {
+    playCashierSound();
+  };
+
   return (
-    <div className="wg-visual wg-blocks" aria-hidden>
-      <div className="wg-iso">
-        <span className="face top" />
-        <span className="face left" />
-        <span className="face right" />
-        <span className="face top2" />
-        <span className="face left2" />
-        <span className="face right2" />
+    <div
+      ref={stageRef}
+      className={`wg-visual wg-blocks${active ? " is-hot" : ""}`}
+      onMouseMove={onMove}
+      onMouseEnter={onEnter}
+      onMouseLeave={onLeave}
+      onClick={onTap}
+      aria-label="Credit card"
+    >
+      <div
+        className="wg-cc"
+        style={{
+          transform: `translate3d(${magnet.x}px, ${magnet.y}px, 0) rotateX(${magnet.rx}deg) rotateY(${magnet.ry}deg)`,
+        }}
+      >
+        <div className="wg-cc-shine" aria-hidden />
+        <div className="wg-cc-top">
+          <span className="wg-cc-brand">ORBIT</span>
+          <span className="wg-cc-chip" aria-hidden>
+            <i />
+            <i />
+            <i />
+            <i />
+          </span>
+        </div>
+        <div className="wg-cc-wave" aria-hidden>
+          <span />
+          <span />
+          <span />
+        </div>
+        <p className="wg-cc-number">4242  ····  ····  8610</p>
+        <div className="wg-cc-foot">
+          <div>
+            <small>Cardholder</small>
+            <strong>{site.fullName.toUpperCase()}</strong>
+          </div>
+          <div className="wg-cc-exp">
+            <small>Exp</small>
+            <strong>09/28</strong>
+          </div>
+          <span className="wg-cc-mark" aria-hidden>
+            <i />
+            <i />
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -358,13 +492,17 @@ export function WorkGallery() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.55, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
           >
-            {item.visual === "shortcuts" ? (
+            {item.visual === "blocks" ? (
               <div className="wg-card wg-card-interactive">
+                <BlocksVisual />
+              </div>
+            ) : item.visual === "shortcuts" ? (
+              <Link to="/about" className="wg-card wg-card-interactive">
                 <ShortcutsVisual />
                 <span className="wg-arrow" aria-hidden>
                   <ArrowUpRight size={16} strokeWidth={1.75} />
                 </span>
-              </div>
+              </Link>
             ) : (
               <Link to={item.href} className="wg-card">
                 <Visual type={item.visual} />
