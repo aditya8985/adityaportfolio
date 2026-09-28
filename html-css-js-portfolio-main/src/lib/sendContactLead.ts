@@ -1,4 +1,4 @@
-import { site } from "./content";
+import { site } from "../data/content";
 
 export type ContactLead = {
   name: string;
