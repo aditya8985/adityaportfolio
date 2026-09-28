@@ -1159,101 +1159,188 @@
   color: #166534;
 }
 
-/* Moments / stickers */
+/* Moments — polaroid shuffle stack */
 .wg-visual.wg-moments {
   background: #f3f3f5;
+  cursor: pointer;
+  overflow: hidden;
+  place-items: center;
+  user-select: none;
 }
 
-.wg-moments-bw {
-  text-align: center;
-  transition: opacity 0.4s var(--ease), transform 0.45s var(--ease);
+.wg-card-interactive:hover .wg-visual.wg-moments,
+.wg-card:hover .wg-visual.wg-moments,
+.wg-visual.wg-moments.is-spread {
+  filter: grayscale(0) contrast(1);
+  transform: none;
+  background: #efe8dc;
 }
 
-.wg-moments-bw p {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.1rem, 1.8vw, 1.45rem);
-  color: #b0b0b6;
-  margin-bottom: 4px;
-}
-
-.wg-moments-bw strong {
-  display: block;
-  font-size: clamp(2rem, 3.4vw, 2.8rem);
-  letter-spacing: -0.04em;
-  line-height: 0.95;
-  color: #3a3a40;
-}
-
-.wg-stickers {
+.wg-moments-stack {
   position: absolute;
   inset: 0;
-  opacity: 0;
-  transform: scale(0.92);
-  transition: opacity 0.45s var(--ease), transform 0.5s var(--ease);
+  display: grid;
+  place-items: center;
+  perspective: 900px;
+}
+
+.wg-polaroid {
+  --rot: calc((var(--i) - 1.5) * 5deg);
+  --x: calc((var(--i) - 1.5) * 7px);
+  --y: calc(var(--i) * 4px);
+  position: absolute;
+  width: min(56%, 144px);
+  margin: 0;
+  padding: 8px 8px 22px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 12px 28px rgba(0, 0, 0, 0.14);
+  transform: translate(var(--x), calc(var(--y) - 8px)) rotate(var(--rot));
+  transition:
+    transform 0.55s var(--ease),
+    box-shadow 0.45s var(--ease),
+    opacity 0.4s var(--ease);
+  opacity: calc(1 - min(var(--i), 5) * 0.12);
+  visibility: visible;
+}
+
+.wg-moments.is-spread .wg-polaroid,
+.wg-card-interactive:hover .wg-polaroid {
+  --fan-x: calc((var(--i) - 1.5) * 14px);
+  --fan-y: calc((var(--i) - 1.5) * 3px + var(--i) * 1.5px);
+  --fan-rot: calc((var(--i) - 1.5) * 9deg);
+  transform: translate(var(--fan-x), calc(var(--fan-y) - 4px)) rotate(var(--fan-rot));
+}
+
+.wg-polaroid.is-front {
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.08),
+    0 18px 36px rgba(0, 0, 0, 0.18);
+}
+
+.wg-polaroid-photo {
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #e8e8ec;
+  border-radius: 2px;
+}
+
+.wg-polaroid-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s var(--ease);
+}
+
+.wg-polaroid.is-front .wg-polaroid-photo img {
+  transform: scale(1.04);
+}
+
+.wg-polaroid figcaption {
+  margin-top: 8px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #6a6a70;
+  text-align: center;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+
+.wg-moments-chip {
+  position: absolute;
+  right: 12px;
+  top: 14px;
+  z-index: 8;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.14);
+  transform: rotate(6deg);
+  pointer-events: none;
+  max-width: 46%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wg-moments-chip.tone-blue {
+  background: #3b82f6;
+}
+.wg-moments-chip.tone-coral {
+  background: #ef4444;
+}
+.wg-moments-chip.tone-peach {
+  background: #1e3a8a;
+}
+.wg-moments-chip.tone-sky {
+  background: #f97316;
+}
+.wg-moments-chip.tone-amber {
+  background: #eab308;
+  color: #1a1a1a;
+}
+
+.wg-moments-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  z-index: 8;
+  display: flex;
+  gap: 4px;
   pointer-events: none;
 }
 
-.wg-card:hover .wg-visual.wg-moments {
-  background: #f3e8d4;
+.wg-moments-dots i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.18);
+  display: block;
+  transition: transform 0.3s var(--ease), background 0.3s;
 }
 
-.wg-card:hover .wg-moments-bw {
-  opacity: 0;
-  transform: scale(0.96);
+.wg-moments-dots i.on {
+  background: #1a1a1a;
+  transform: scale(1.25);
 }
 
-.wg-card:hover .wg-stickers {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.st {
+.wg-moments-hint {
   position: absolute;
-  padding: 10px 14px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  color: #fff;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  white-space: nowrap;
+  right: 14px;
+  bottom: 12px;
+  z-index: 8;
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #9a9086;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+  pointer-events: none;
 }
 
-.st.s1 {
-  top: 18%;
-  left: 10%;
-  background: #3b82f6;
-  transform: rotate(-8deg);
+.wg-moments.is-spread .wg-moments-hint,
+.wg-card-interactive:hover .wg-moments-hint {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.st.s2 {
-  top: 34%;
-  right: 8%;
-  background: #f97316;
-  transform: rotate(6deg);
-}
-
-.st.s3 {
-  top: 52%;
-  left: 16%;
-  background: #1e3a8a;
-  transform: rotate(-3deg);
-}
-
-.st.s4 {
-  bottom: 24%;
-  right: 14%;
-  background: #eab308;
-  color: #1a1a1a;
-  transform: rotate(8deg);
-}
-
-.st.s5 {
-  bottom: 18%;
-  left: 12%;
-  background: #ef4444;
-  transform: rotate(-12deg);
-  font-size: 11px;
+.wg-card-moments .wg-arrow {
+  pointer-events: auto;
+  z-index: 9;
 }
 
 /* Globe (last card) */

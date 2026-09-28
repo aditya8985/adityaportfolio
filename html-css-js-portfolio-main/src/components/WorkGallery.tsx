@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import { ArrowUpRight, Mail, User } from "lucide-react";
 import { site } from "../data/content";
+import { momentShots } from "../data/moments";
 import { GalleryGlobe } from "./GalleryGlobe";
 import "./WorkGallery.css";
 
@@ -39,7 +40,7 @@ const items = [
   },
   {
     id: "moments",
-    href: "/work/samayseva",
+    href: "/moments",
     span: "square",
     visual: "moments" as const,
   },
@@ -428,19 +429,64 @@ function CalendarVisual() {
 }
 
 function MomentsVisual() {
+  const [active, setActive] = useState(0);
+  const [spread, setSpread] = useState(false);
+  const shot = momentShots[active];
+
+  const advance = (e: MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setActive((i) => (i + 1) % momentShots.length);
+  };
+
   return (
-    <div className="wg-visual wg-moments">
-      <div className="wg-moments-bw">
-        <p>Small Moments</p>
-        <strong>BIG JOY</strong>
+    <div
+      className={`wg-visual wg-moments${spread ? " is-spread" : ""}`}
+      onMouseEnter={() => setSpread(true)}
+      onMouseLeave={() => setSpread(false)}
+      onClick={advance}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          setActive((i) => (i + 1) % momentShots.length);
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={`Small moments gallery, photo ${active + 1} of ${momentShots.length}. Click for next.`}
+    >
+      <div className="wg-moments-stack" aria-hidden>
+        {momentShots.map((m, i) => {
+          const offset = (i - active + momentShots.length) % momentShots.length;
+          return (
+            <figure
+              key={m.src}
+              className={`wg-polaroid tone-${m.tone}${offset === 0 ? " is-front" : ""}`}
+              style={
+                {
+                  "--i": offset,
+                  zIndex: momentShots.length - offset,
+                } as CSSProperties
+              }
+            >
+              <div className="wg-polaroid-photo">
+                <img src={m.src} alt="" draggable={false} />
+              </div>
+              <figcaption>{m.caption}</figcaption>
+            </figure>
+          );
+        })}
       </div>
-      <div className="wg-stickers" aria-hidden>
-        <span className="st s1">Extremely Outside</span>
-        <span className="st s2">VACATION VIBES</span>
-        <span className="st s3">IRL HANGS</span>
-        <span className="st s4">Food Food Food</span>
-        <span className="st s5">NAILED IT!</span>
+
+      <span className={`wg-moments-chip tone-${shot.tone}`}>{shot.label}</span>
+
+      <div className="wg-moments-dots" aria-hidden>
+        {momentShots.map((m, i) => (
+          <i key={m.src} className={i === active ? "on" : undefined} />
+        ))}
       </div>
+
+      <span className="wg-moments-hint">tap to shuffle</span>
     </div>
   );
 }
@@ -495,6 +541,13 @@ export function WorkGallery() {
             ) : item.visual === "arch" ? (
               <div className="wg-card wg-card-interactive wg-card-globe">
                 <ArchVisual />
+                <Link to={item.href} className="wg-arrow" aria-label="Open project">
+                  <ArrowUpRight size={16} strokeWidth={1.75} />
+                </Link>
+              </div>
+            ) : item.visual === "moments" ? (
+              <div className="wg-card wg-card-interactive wg-card-moments">
+                <MomentsVisual />
                 <Link to={item.href} className="wg-arrow" aria-label="Open project">
                   <ArrowUpRight size={16} strokeWidth={1.75} />
                 </Link>

@@ -6,6 +6,7 @@ import { About } from "./pages/About";
 import { Work } from "./pages/Work";
 import { Contact } from "./pages/Contact";
 import { ProjectDetail } from "./pages/ProjectDetail";
+import { Moments } from "./pages/Moments";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/work" element={<Work />} />
         <Route path="/work/:id" element={<ProjectDetail />} />
+        <Route path="/moments" element={<Moments />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </BrowserRouter>
