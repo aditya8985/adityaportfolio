@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { ArrowUpRight, Mail, User } from "lucide-react";
 import { site } from "../data/content";
+import { GalleryGlobe } from "./GalleryGlobe";
 import "./WorkGallery.css";
 
 const items = [
@@ -445,19 +446,7 @@ function MomentsVisual() {
 }
 
 function ArchVisual() {
-  return (
-    <div className="wg-visual wg-arch" aria-hidden>
-      <svg viewBox="0 0 120 140" fill="none">
-        <path
-          d="M20 130 V55 C20 28 44 12 60 12 C76 12 100 28 100 55 V130"
-          stroke="currentColor"
-          strokeWidth="14"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    </div>
-  );
+  return <GalleryGlobe />;
 }
 
 function Visual({ type }: { type: (typeof items)[number]["visual"] }) {
@@ -503,6 +492,13 @@ export function WorkGallery() {
                   <ArrowUpRight size={16} strokeWidth={1.75} />
                 </span>
               </Link>
+            ) : item.visual === "arch" ? (
+              <div className="wg-card wg-card-interactive wg-card-globe">
+                <ArchVisual />
+                <Link to={item.href} className="wg-arrow" aria-label="Open project">
+                  <ArrowUpRight size={16} strokeWidth={1.75} />
+                </Link>
+              </div>
             ) : (
               <Link to={item.href} className="wg-card">
                 <Visual type={item.visual} />
