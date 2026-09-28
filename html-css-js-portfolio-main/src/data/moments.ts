@@ -54,4 +54,22 @@ export const momentShots: MomentShot[] = [
     caption: "a day in my life",
     tone: "amber",
   },
+  {
+    src: "/moments/09-tablet-markup.jpg",
+    label: "NAILED IT!",
+    caption: "red pen reviews",
+    tone: "coral",
+  },
+  {
+    src: "/moments/10-sticky-wall.jpg",
+    label: "IRL HANGS",
+    caption: "wall of ideas",
+    tone: "peach",
+  },
+  {
+    src: "/moments/11-wireframe-sketch.jpg",
+    label: "NAILED IT!",
+    caption: "paper flows",
+    tone: "sky",
+  },
 ];

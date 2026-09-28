@@ -22,34 +22,6 @@
   gap: var(--home-gap);
 }
 
-.home-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  padding-top: 40px;
-  padding-bottom: 80px;
-  border-top: 1px solid var(--border);
-  font-size: 14px;
-  color: var(--text-soft);
-}
-
-.home-footer p {
-  margin: 0;
-  min-width: 0;
-}
-
-.home-footer a {
-  font-weight: 500;
-  color: var(--text);
-  transition: opacity 0.2s;
-  flex-shrink: 0;
-}
-
-.home-footer a:hover {
-  opacity: 0.7;
-}
-
 @media (max-width: 640px) {
   .home .bento {
     padding-bottom: 0;
@@ -57,18 +29,10 @@
 
   .home .work-gallery {
     padding-top: 12px;
-    padding-bottom: 24px;
+    padding-bottom: calc(var(--nav-h) + 28px + env(safe-area-inset-bottom, 0px));
   }
 
   .home .wg-grid {
     gap: 12px;
-  }
-
-  .home-footer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    padding-top: 28px;
-    padding-bottom: calc(var(--nav-h) + 28px + env(safe-area-inset-bottom, 0px));
   }
 }
