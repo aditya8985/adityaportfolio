@@ -4,6 +4,8 @@ export const site = {
   title: "UI/UX Designer",
   location: "India",
   email: "aditya.mote10@gmail.com",
+  /** Inbox that receives contact-bot lead submissions */
+  notifyEmail: "aditya.mote00@gmail.com",
   phone: "+91 77448 47083",
   tagline: "the best things. an optimal amount.",
   emphasis: "Less, but better.",

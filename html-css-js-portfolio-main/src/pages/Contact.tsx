@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUp, ArrowUpRight, Mail } from "lucide-react";
 import { site } from "../data/content";
+import { sendContactLead } from "../lib/sendContactLead";
 import "./Contact.css";
 
 const avatar = site.avatar;
@@ -125,11 +126,37 @@ export function Contact() {
     const upcoming = nextStep[step as Exclude<Step, "done">];
 
     if (upcoming === "done") {
-      pushBot(
-        `thanks ${updated.name.split(" ")[0]} — locked in. i'll reach out at ${updated.email}. or hit me on email / LinkedIn below anytime 👍`,
-        800,
-      );
       setStep("done");
+      setBusy(true);
+      setMessages((prev) => [...prev, { id: msgId++, from: "typing", text: "" }]);
+
+      void (async () => {
+        let reply = "";
+        try {
+          await sendContactLead(updated);
+          reply = `thanks ${updated.name.split(" ")[0]} — got it. i'll reach you at ${updated.email}. email / LinkedIn below anytime 👍`;
+        } catch (err) {
+          const needsActivation = Boolean(
+            err && typeof err === "object" && "needsActivation" in err && (err as { needsActivation?: boolean }).needsActivation,
+          );
+          if (needsActivation) {
+            // FormSubmit emailed the owner an Activate link — treat as received for the visitor
+            console.info("[contact-bot] Activate FormSubmit via the email sent to", site.notifyEmail || site.email);
+            reply = `thanks ${updated.name.split(" ")[0]} — got it. i'll reach you at ${updated.email}. email / LinkedIn below anytime 👍`;
+          } else {
+            console.warn("[contact-bot] lead email failed", err);
+            reply = `thanks ${updated.name.split(" ")[0]} — chat saved, but the email ping failed. message me at ${site.notifyEmail || site.email} or LinkedIn below 👍`;
+          }
+        }
+
+        window.setTimeout(() => {
+          setMessages((prev) => {
+            const withoutTyping = prev.filter((m) => m.from !== "typing");
+            return [...withoutTyping, { id: msgId++, from: "them", text: reply }];
+          });
+          setBusy(false);
+        }, 450);
+      })();
       return;
     }
 
