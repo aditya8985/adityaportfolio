@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Nav } from "./components/Nav";
 import { Preloader } from "./components/Preloader";
+import { ScrollToTop } from "./components/ScrollToTop";
 import { Home } from "./pages/Home";
 import { About } from "./pages/About";
 import { Work } from "./pages/Work";
@@ -11,6 +12,7 @@ import { Moments } from "./pages/Moments";
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Preloader />
       <Nav />
       <Routes>
