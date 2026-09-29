@@ -2,7 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Play, ThumbsUp, Globe2 } from "lucide-react";
-import { site, restaurants } from "../data/content";
+import { site } from "../data/content";
+import { FoodPhoneApp } from "./FoodPhoneApp";
 import "./BentoHome.css";
 
 const manifesto = [
@@ -75,6 +76,7 @@ export function BentoHome() {
   const [activeApp, setActiveApp] = useState("notion");
   const [docIndex, setDocIndex] = useState(0);
   const [looking, setLooking] = useState(false);
+  const [foodEngaged, setFoodEngaged] = useState(false);
   const workspace = workspaceByApp[activeApp] ?? workspaceByApp.notion;
 
   return (
@@ -182,42 +184,18 @@ export function BentoHome() {
               className="bento-card bento-phone"
               initial={{ opacity: 0, y: 18 }}
               animate={
-                looking
+                looking && !foodEngaged
                   ? { opacity: 1, y: [0, 5, 0] }
                   : { opacity: 1, y: 0 }
               }
               transition={
-                looking
+                looking && !foodEngaged
                   ? { duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: 0.2 }
                   : { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.35 }
               }
+              onPointerDown={() => setFoodEngaged(true)}
             >
-              <div className="phone-preview">
-                <div className="pp-status">
-                  <span>9:41</span>
-                  <span className="pp-notch" />
-                  <span>●●●</span>
-                </div>
-                <p className="pp-deliver">Delivering to → Brooklyn</p>
-                <h3 className="pp-discover">Discover</h3>
-                <div className="pp-search">Search restaurants & dishes</div>
-                <div className="pp-chips">
-                  {["Trivia", "Express", "Japanese", "Pizza"].map((c, i) => (
-                    <span key={c} className={i === 0 ? "on" : ""}>
-                      {c}
-                    </span>
-                  ))}
-                </div>
-                <div className="pp-cards">
-                  {restaurants.slice(0, 2).map((r) => (
-                    <div key={r.name} className="pp-card">
-                      <img src={r.image} alt="" />
-                      <strong>{r.name}</strong>
-                      <small>{r.type}</small>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <FoodPhoneApp />
             </motion.div>
 
             <motion.a
