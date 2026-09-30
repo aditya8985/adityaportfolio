@@ -1,7 +1,18 @@
-import { useState } from "react";
+import { useState, type ComponentType } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Play, ThumbsUp, Globe2 } from "lucide-react";
+import {
+  ArrowUpRight,
+  Play,
+  ThumbsUp,
+  Globe2,
+  Search,
+  Scale,
+  Palette,
+  PenTool,
+  FileText,
+  type LucideProps,
+} from "lucide-react";
 import { site } from "../data/content";
 import { FoodPhoneApp } from "./FoodPhoneApp";
 import "./BentoHome.css";
@@ -24,36 +35,88 @@ const dockApps = [
   { id: "miro", label: "Miro", logo: "/dock/miro.png", cover: true },
 ];
 
-const workspaceByApp: Record<string, { mark: string; title: string; docs: string[] }> = {
+type DocIcon = ComponentType<LucideProps>;
+type WorkspaceDoc = { title: string; url?: string; icon?: DocIcon };
+
+const workspaceByApp: Record<
+  string,
+  { mark: string; title: string; docs: WorkspaceDoc[] }
+> = {
   notion: {
     mark: "N",
     title: "NOTION",
-    docs: ["DotOS Notes", "1-on-1 Meeting Notes", "Project Timeline", "Tasks"],
+    docs: [
+      {
+        title: "Research Methods",
+        icon: Search,
+        url: "https://app.notion.com/p/Research-Methods-3eb2e5ee3d7e808b9341f7fce965980e?source=copy_link",
+      },
+      {
+        title: "UX Laws",
+        icon: Scale,
+        url: "https://app.notion.com/p/UX-Laws-3eb2e5ee3d7e80899ce3f11c045decf8?source=copy_link",
+      },
+      {
+        title: "UI Design",
+        icon: Palette,
+        url: "https://app.notion.com/p/UI-Design-ad7a45dba98e46c4baf0f353035bc93e?source=copy_link",
+      },
+      {
+        title: "UX Design",
+        icon: PenTool,
+        url: "https://app.notion.com/p/UX-Design-3e92e5ee3d7e80378adbc65c242c33f0?source=copy_link",
+      },
+    ],
   },
   figma: {
     mark: "F",
     title: "FIGMA",
-    docs: ["Design System", "Mobile Flows", "Component Library", "Prototype"],
+    docs: [
+      { title: "Design System", icon: FileText },
+      { title: "Mobile Flows", icon: FileText },
+      { title: "Component Library", icon: FileText },
+      { title: "Prototype", icon: FileText },
+    ],
   },
   procreate: {
     mark: "P",
     title: "PROCREATE",
-    docs: ["Sketch Studies", "Texture Pack", "Illustration Set", "Brush Set"],
+    docs: [
+      { title: "Sketch Studies", icon: FileText },
+      { title: "Texture Pack", icon: FileText },
+      { title: "Illustration Set", icon: FileText },
+      { title: "Brush Set", icon: FileText },
+    ],
   },
   certifications: {
     mark: "C",
     title: "CERTIFICATIONS",
-    docs: ["Google UX", "NN/g UX", "Figma Advanced", "Accessibility"],
+    docs: [
+      { title: "Google UX", icon: FileText },
+      { title: "NN/g UX", icon: FileText },
+      { title: "Figma Advanced", icon: FileText },
+      { title: "Accessibility", icon: FileText },
+    ],
   },
   mockup: {
     mark: "M",
     title: "MOCKUP",
-    docs: ["Device Frames", "App Store Kit", "Web Browser", "Presentation"],
+    docs: [
+      { title: "Device Frames", icon: FileText },
+      { title: "App Store Kit", icon: FileText },
+      { title: "Web Browser", icon: FileText },
+      { title: "Presentation", icon: FileText },
+    ],
   },
   miro: {
     mark: "M",
     title: "MIRO",
-    docs: ["Affinity Map", "User Journey", "Workshop Board", "IA Map"],
+    docs: [
+      { title: "Affinity Map", icon: FileText },
+      { title: "User Journey", icon: FileText },
+      { title: "Workshop Board", icon: FileText },
+      { title: "IA Map", icon: FileText },
+    ],
   },
 };
 
@@ -136,18 +199,45 @@ export function BentoHome() {
             </div>
 
             <div className="ws-docs">
-              {workspace.docs.map((doc, i) => (
-                <button
-                  key={doc}
-                  type="button"
-                  className={`ws-doc${docIndex === i ? " active" : ""}`}
-                  onClick={() => setDocIndex(i)}
-                >
-                  <span className="ws-doc-icon">📄</span>
-                  <span className="ws-doc-title">{doc}</span>
-                  <span className="ws-doc-sub">{site.name}'s Workspace</span>
-                </button>
-              ))}
+              {workspace.docs.map((doc, i) => {
+                const className = `ws-doc${docIndex === i ? " active" : ""}`;
+                const Icon = doc.icon ?? FileText;
+                const inner = (
+                  <>
+                    <span className="ws-doc-icon" aria-hidden>
+                      <Icon size={18} strokeWidth={1.9} />
+                    </span>
+                    <span className="ws-doc-title">{doc.title}</span>
+                    <span className="ws-doc-sub">{site.name}'s Workspace</span>
+                  </>
+                );
+
+                if (doc.url) {
+                  return (
+                    <a
+                      key={doc.title}
+                      href={doc.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={className}
+                      onClick={() => setDocIndex(i)}
+                    >
+                      {inner}
+                    </a>
+                  );
+                }
+
+                return (
+                  <button
+                    key={doc.title}
+                    type="button"
+                    className={className}
+                    onClick={() => setDocIndex(i)}
+                  >
+                    {inner}
+                  </button>
+                );
+              })}
             </div>
 
             <div className="ws-dock">

@@ -168,14 +168,27 @@ export const bookmarks = [
 ];
 
 export const notionDocs = [
-  "DotOS Notes",
-  "1-on-1 Meeting Notes",
-  "Project Timeline",
-  "Tasks",
-  "Dev Handoffs",
-  "Reads",
-  "Vacation Plan",
-];
+  {
+    title: "Research Methods",
+    icon: "search",
+    url: "https://app.notion.com/p/Research-Methods-3eb2e5ee3d7e808b9341f7fce965980e?source=copy_link",
+  },
+  {
+    title: "UX Laws",
+    icon: "scale",
+    url: "https://app.notion.com/p/UX-Laws-3eb2e5ee3d7e80899ce3f11c045decf8?source=copy_link",
+  },
+  {
+    title: "UI Design",
+    icon: "palette",
+    url: "https://app.notion.com/p/UI-Design-ad7a45dba98e46c4baf0f353035bc93e?source=copy_link",
+  },
+  {
+    title: "UX Design",
+    icon: "pen",
+    url: "https://app.notion.com/p/UX-Design-3e92e5ee3d7e80378adbc65c242c33f0?source=copy_link",
+  },
+] as const;
 
 export const figmaFiles = [
   { name: "DotOS Design", path: "figma.com/dot-os-design" },

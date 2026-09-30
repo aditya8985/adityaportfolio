@@ -1,7 +1,15 @@
 import { useRef, type ReactNode, type MouseEvent } from "react";
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
+import { Search, Scale, Palette, PenTool } from "lucide-react";
 import { bookmarks, notionDocs, figmaFiles, linearTasks, site } from "../data/content";
 import "./DotOSDemo.css";
+
+const notionIcons = {
+  search: Search,
+  scale: Scale,
+  palette: Palette,
+  pen: PenTool,
+} as const;
 
 function WindowChrome({ title, children, className = "" }: { title: string; children: ReactNode; className?: string }) {
   return (
@@ -77,12 +85,23 @@ export function DotOSDemo() {
           <motion.div className="float float-notion" style={{ y: y2 }}>
             <WindowChrome title="Workspace" className="win-notion">
               <div className="notion-list">
-                {notionDocs.map((doc) => (
-                  <div key={doc} className="notion-row">
-                    <span>📄</span>
-                    <span>{doc}</span>
-                  </div>
-                ))}
+                {notionDocs.map((doc) => {
+                  const Icon = notionIcons[doc.icon];
+                  return (
+                    <a
+                      key={doc.title}
+                      className="notion-row"
+                      href={doc.url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <span className="notion-row-icon" aria-hidden>
+                        <Icon size={14} strokeWidth={2} />
+                      </span>
+                      <span>{doc.title}</span>
+                    </a>
+                  );
+                })}
               </div>
             </WindowChrome>
           </motion.div>
