@@ -164,22 +164,57 @@
   color: var(--text-soft);
 }
 
+/* Sticky white band that covers the gap under the nav once tabs stick */
+.cs-chapters-cloak {
+  position: sticky;
+  top: 0;
+  z-index: 19;
+  height: calc(var(--nav-h) + 12px);
+  margin-bottom: calc(-1 * (var(--nav-h) + 12px));
+  background: #fff;
+  pointer-events: none;
+}
+
 .cs-chapters {
+  position: sticky;
+  top: calc(var(--nav-h) + 12px);
+  z-index: 20;
+  isolation: isolate;
+  overflow: visible;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 16px;
+  padding-bottom: 12px;
+  background: #fff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Full-bleed white plate behind the tab row itself */
+.cs-chapters::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: #fff;
+}
+
+.cs-chapters-track {
+  position: relative;
+  z-index: 1;
   display: flex;
   gap: 8px;
   overflow-x: auto;
-  padding-top: 28px;
-  padding-bottom: 8px;
+  overflow-y: hidden;
   scrollbar-width: none;
-  position: sticky;
-  top: calc(var(--nav-h) - 8px);
-  z-index: 12;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.78));
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
-.cs-chapters::-webkit-scrollbar {
+.cs-chapters-track::-webkit-scrollbar {
   display: none;
 }
 
@@ -191,7 +226,7 @@
   padding: 9px 14px;
   border-radius: 999px;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  background: rgba(255, 255, 255, 0.85);
+  background: #fff;
   font-size: 12px;
   font-weight: 550;
   color: var(--text-soft);
@@ -234,13 +269,11 @@
   padding: 28px 0 34px;
   border-top: 1px solid rgba(0, 0, 0, 0.07);
   opacity: 0.78;
-  transform: translateY(4px);
-  transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
+  transition: opacity 0.45s var(--ease);
 }
 
 .cs-chapter.is-active {
   opacity: 1;
-  transform: none;
 }
 
 /* Keep foundation / library sections fully readable while scrolling */
@@ -256,7 +289,6 @@
 .cs-chapter:has(.cs-diagram),
 .cs-chapter:has(.micro-play) {
   opacity: 1;
-  transform: none;
 }
 
 .cs-chapter-label {
@@ -561,7 +593,12 @@
   }
 
   .cs-chapters {
-    top: 0;
+    top: calc(var(--nav-h) + 12px);
+  }
+
+  .cs-chapters-cloak {
+    height: calc(var(--nav-h) + 12px);
+    margin-bottom: calc(-1 * (var(--nav-h) + 12px));
   }
 }
 

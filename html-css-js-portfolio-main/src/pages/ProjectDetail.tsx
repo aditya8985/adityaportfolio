@@ -653,18 +653,21 @@ export function ProjectDetail() {
         )}
       </header>
 
+      <div className="cs-chapters-cloak" aria-hidden />
       <nav className="cs-chapters page-pad" aria-label="Case study chapters">
-        {chapters.map((ch, i) => (
-          <button
-            key={ch.id}
-            type="button"
-            className={i === activeChapter ? "is-active" : undefined}
-            onClick={() => jumpTo(i)}
-          >
-            <span>{ch.label}</span>
-            {ch.title}
-          </button>
-        ))}
+        <div className="cs-chapters-track">
+          {chapters.map((ch, i) => (
+            <button
+              key={ch.id}
+              type="button"
+              className={i === activeChapter ? "is-active" : undefined}
+              onClick={() => jumpTo(i)}
+            >
+              <span>{ch.label}</span>
+              {ch.title}
+            </button>
+          ))}
+        </div>
       </nav>
 
       <div className={`cs-layout page-pad ${showSystemStage ? "cs-layout-wide" : ""}`}>
